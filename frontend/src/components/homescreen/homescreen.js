@@ -1,9 +1,11 @@
+import "./homescreen.css";
+
 function HomeScreen() {
   return (
     <div className="homescreen">
-      <h1>Testing</h1>
+      <div className="book"></div>
     </div>
   );
 }
 
-export default HomeScreen();
+export default HomeScreen;
