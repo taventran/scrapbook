@@ -5,7 +5,6 @@ function HomeScreen() {
   return (
     <div className="homescreen">
       <Navbar />
-      <div className="book"></div>
     </div>
   );
 }
