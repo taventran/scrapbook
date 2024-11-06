@@ -4,7 +4,10 @@ function Editor() {
   return (
     <div className="editor">
       <Navbar />
-      <div className="book"></div>
+
+      <div className="book">
+        <canvas height="512px" width="512px"></canvas>
+      </div>
     </div>
   );
 }
