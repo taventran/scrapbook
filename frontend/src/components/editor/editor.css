@@ -8,13 +8,33 @@
 
 .edit {
     background-color: aliceblue;
-    width: 300px;
+    width: 500px;
+    height: 500px;
+}
+
+.toolbar {
+    background-color: white;
+    border: 2px dashed red;
+    border-radius: 10%;
+    width: 30px;
     height: 300px;
+    margin-right: 20px;
+}
+
+.svg-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.svg-icon:hover {
+    background-color: yellow;
+    cursor: pointer;
 }
 
 .book {
-    justify-content: center;
     display: flex;
+    justify-content: center;
+    align-items: center;
     border: 3px solid #fff8de;
     background-color: #d0e8c5;
     height: 100vh;
