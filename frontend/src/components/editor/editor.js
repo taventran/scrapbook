@@ -2,9 +2,8 @@ import "./editor.css";
 import React from "react";
 import { useRef, useState } from "react";
 import Navbar from "../navbar/navbar";
-import circleIcon from "../svgs/circle.svg";
-import squareIcon from "../svgs/square.svg";
 import { Rectangle, Circle } from "./shapes/drawShape";
+import Toolbar from "./toolbar";
 
 function Editor() {
   const canvasRef = useRef(null);
@@ -38,22 +37,7 @@ function Editor() {
     <div className="editor">
       <Navbar />
       <div className="book">
-        <div className="toolbar">
-          <img
-            className="svg-icon"
-            src={circleIcon}
-            alt="circle"
-            id="circle"
-            onClick={handleShapeClick}
-          />
-          <img
-            className="svg-icon"
-            src={squareIcon}
-            alt="square"
-            id="square"
-            onClick={handleShapeClick}
-          />
-        </div>
+        <Toolbar handleShapeClick={handleShapeClick} />
         <canvas
           ref={canvasRef}
           className="edit"
