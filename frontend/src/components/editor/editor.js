@@ -17,7 +17,6 @@ function Editor() {
 
   const handleColorChange = (color) => {
     let canvas = document.querySelector(".edit");
-    console.log(canvas);
     canvas.style.background = color.hex;
   };
 
