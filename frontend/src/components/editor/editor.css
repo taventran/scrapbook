@@ -6,11 +6,23 @@
     text-align: center;
 }
 
+.book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #fff8de;
+    background-color: #d0e8c5;
+    height: 100vh;
+    width: 100vw;
+    overflow: auto; /* Enable scrolling */
+    position: relative;
+}
+
 .edit {
     background-color: aliceblue;
-    width: 500px;
-    height: 500px;
-    overflow: scroll;
+    width: 800px; /* Larger width to allow horizontal scrolling */
+    height: 800px; /* Larger height to allow vertical scrolling */
+    display: block; /* Ensure it's treated as a block element */
 }
 
 .toolbar {
@@ -30,15 +42,4 @@
 .svg-icon:hover {
     background-color: yellow;
     cursor: pointer;
-}
-
-.book {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid #fff8de;
-    background-color: #d0e8c5;
-    height: 100vh;
-    width: 100vw;
-    overflow: scroll;
 }

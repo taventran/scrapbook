@@ -1,5 +1,5 @@
-import circleIcon from "../svgs/circle.svg";
-import squareIcon from "../svgs/square.svg";
+import circleIcon from "../../svgs/circle.svg";
+import squareIcon from "../../svgs/square.svg";
 
 function Toolbar({ handleShapeClick }) {
   return (

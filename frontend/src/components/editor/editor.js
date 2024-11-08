@@ -2,8 +2,9 @@ import "./editor.css";
 import React from "react";
 import { useRef, useState } from "react";
 import Navbar from "../navbar/navbar";
-import { Rectangle, Circle } from "./shapes/drawShape";
-import Toolbar from "./toolbar";
+import { Rectangle, Circle } from "./tools/shapes/drawShape";
+import Toolbar from "./tools/toolbar";
+import ColorPicker from "./tools/colorPicker";
 
 function Editor() {
   const canvasRef = useRef(null);
@@ -12,6 +13,12 @@ function Editor() {
   const handleShapeClick = (event) => {
     setShape(event.target.id);
     console.log(shape);
+  };
+
+  const handleColorChange = (color) => {
+    let canvas = document.querySelector(".edit");
+    console.log(canvas);
+    canvas.style.background = color.hex;
   };
 
   const handleCanvasClick = (event) => {
@@ -37,6 +44,7 @@ function Editor() {
     <div className="editor">
       <Navbar />
       <div className="book">
+        <ColorPicker handleColorChange={handleColorChange} />
         <Toolbar handleShapeClick={handleShapeClick} />
         <canvas
           ref={canvasRef}
