@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "fabric": "^6.4.3",
+    "react-fabricjs": "^0.1.6"
+  }
+}

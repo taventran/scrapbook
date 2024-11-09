@@ -1,19 +1,26 @@
-export const Rectangle = (canvasRef, x, y) => {
-  if (canvasRef.current) {
-    const ctx = canvasRef.current.getContext("2d");
-    ctx.lineWidth = 1;
-    ctx?.strokeRect(x, y, 10, 10); // Draw the rectangle at the specified (x, y) position
-  }
+import { Rect, Circle } from "fabric";
+
+export const DrawRectangle = (canvas) => {
+  const rect = new Rect({
+    left: 30,
+    top: 30,
+    fill: "blue",
+    width: 100,
+    height: 100,
+  });
+  console.log("looking at rectangle: ", rect);
+  canvas.add(rect);
+  canvas.renderAll(); // Ensure the canvas is re-rendered
 };
 
-export const Circle = (canvasRef, x, y) => {
-  if (canvasRef.current) {
-    const ctx = canvasRef.current.getContext("2d");
-    const radius = 5; // Set the radius of the circle
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI); // Draw a circle
-    ctx.strokeStyle = "black"; // Set the stroke color
-    ctx.lineWidth = 1;
-    ctx.stroke(); // Stroke the circle border
-  }
+export const DrawCircle = (canvas) => {
+  const circle = new Circle({
+    radius: 50,
+    fill: "red",
+    top: 30,
+    left: 30,
+  });
+  console.log("looking at circle: ", circle);
+  canvas.add(circle);
+  canvas.renderAll();
 };
