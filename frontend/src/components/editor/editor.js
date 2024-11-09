@@ -1,7 +1,7 @@
 import "./editor.css";
 import React, { useRef, useState, useEffect } from "react";
 import Navbar from "../navbar/navbar";
-import { DrawRectangle, DrawCircle } from "./tools/shapes/drawShape";
+import { DrawRectangle, DrawCircle, addImage } from "./tools/shapes/drawShape";
 import Toolbar from "./tools/toolbar";
 import ColorPicker from "./tools/colorPicker";
 import { Canvas } from "fabric";
@@ -10,6 +10,7 @@ import { Canvas } from "fabric";
 function Editor() {
   const canvasRef = useRef(null);
   const [canvas, setCanvas] = useState(null);
+  const [file, setFile] = useState(null);
 
   // Initialize Fabric.js canvas
   useEffect(() => {
@@ -63,15 +64,23 @@ function Editor() {
     console.log("Canvas clicked at:", x, y);
 
     if (selectedShape === "square") {
-      DrawRectangle(canvas, x, y);
+      DrawRectangle(canvas);
     } else if (selectedShape === "circle") {
-      DrawCircle(canvas, x, y);
+      DrawCircle(canvas);
     }
   };
+
+  function handleFileChange(e) {
+    console.log(e.target.files);
+    setFile(URL.createObjectURL(e.target.files[0]));
+
+    addImage(canvas, file);
+  }
 
   return (
     <div className="editor">
       <Navbar />
+      <input type="file" onChange={handleFileChange} />
       <div className="book">
         <ColorPicker handleColorChange={handleColorChange} />
         <Toolbar handleShapeClick={handleShapeClick} />

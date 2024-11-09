@@ -1,4 +1,4 @@
-import { Rect, Circle } from "fabric";
+import { Rect, Circle, FabricImage } from "fabric";
 
 export const DrawRectangle = (canvas) => {
   const rect = new Rect({
@@ -21,4 +21,11 @@ export const DrawCircle = (canvas) => {
   });
   console.log("looking at circle: ", circle);
   canvas.add(circle);
+};
+
+export const addImage = (canvas, file) => {
+  FabricImage.fromURL(file).then(function (img) {
+    canvas.add(img);
+    canvas.renderAll();
+  });
 };
