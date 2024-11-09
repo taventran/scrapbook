@@ -35,10 +35,15 @@ function Editor() {
   console.log("Fabric Canvas:", canvas);
 
   const [selectedShape, setSelectedShape] = useState(null);
+  const [showPicker, setShowPicker] = useState(false);
 
-  const handleShapeClick = (event) => {
-    setSelectedShape(event.target.id);
+  const handlePaintClick = (shape) => {
+    setShowPicker(!showPicker);
+  };
 
+  const handleShapeClick = (shape) => {
+    setSelectedShape(shape);
+    console.log(selectedShape);
     if (selectedShape === "square") {
       DrawRectangle(canvas);
     } else if (selectedShape === "circle") {
@@ -70,20 +75,28 @@ function Editor() {
     }
   };
 
-  function handleFileChange(e) {
-    console.log(e.target.files);
-    setFile(URL.createObjectURL(e.target.files[0]));
-
+  function handleFileChange(event) {
+    console.log(event.target.files);
+    setFile(URL.createObjectURL(event.target.files[0]));
     addImage(canvas, file);
   }
 
   return (
     <div className="editor">
       <Navbar />
-      <input type="file" onChange={handleFileChange} />
       <div className="book">
-        <ColorPicker handleColorChange={handleColorChange} />
-        <Toolbar handleShapeClick={handleShapeClick} />
+        {showPicker && (
+          <div>
+            <ColorPicker handleColorChange={handleColorChange} />
+            <button onClick={() => setShowPicker(false)}>Done</button>
+          </div>
+        )}
+
+        <Toolbar
+          handleShapeClick={handleShapeClick}
+          handleFileChange={handleFileChange}
+          handlePaintClick={handlePaintClick}
+        />
         <canvas
           ref={canvasRef}
           onClick={handleCanvasClick}
