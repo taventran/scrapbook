@@ -1,4 +1,4 @@
-import { Rect, Circle, FabricImage } from "fabric";
+import { Rect, Circle, FabricImage, Textbox } from "fabric";
 
 export const DrawRectangle = (canvas) => {
   const rect = new Rect({
@@ -28,4 +28,17 @@ export const addImage = (canvas, file) => {
     canvas.add(img);
     canvas.renderAll();
   });
+};
+
+export const DrawTextbox = (canvas) => {
+  const textbox = new Textbox("Type here...", {
+    left: 50,
+    top: 50,
+    width: 200,
+    fontSize: 20,
+    fill: "black",
+    backgroundColor: "lightyellow",
+  });
+  canvas.add(textbox);
+  canvas.renderAll();
 };

@@ -3,40 +3,46 @@
 import { FaRegSquare } from "react-icons/fa";
 import { FaRegCircle } from "react-icons/fa";
 import { AiOutlineUpload } from "react-icons/ai";
-import { useRef } from "react";
 import { RiPaintFill } from "react-icons/ri";
+import { CiText } from "react-icons/ci";
+import { useRef } from "react";
 
 function Toolbar({ handleShapeClick, handleFileChange, handlePaintClick }) {
   const hiddenFileInput = useRef(null);
   return (
-    <div>
-      <div className="toolbar">
-        <div id="paint" className="icon" onClick={handlePaintClick}>
-          <RiPaintFill />
-        </div>
-        <div
-          id="circle"
-          className="icon"
-          onClick={() => handleShapeClick("circle")}
-        >
-          <FaRegCircle />
-        </div>
-        <div
-          id="square"
-          className="icon"
-          onClick={() => handleShapeClick("square")}
-        >
-          <FaRegSquare />
-        </div>
-        <div id="upload" className="icon">
-          <input
-            ref={hiddenFileInput}
-            type="file"
-            onChange={handleFileChange}
-            style={{ display: "none" }}
-          />
-          <AiOutlineUpload onClick={() => hiddenFileInput.current.click()} />
-        </div>
+    <div className="toolbar">
+      <div id="paint" className="icon" onClick={handlePaintClick}>
+        <RiPaintFill />
+      </div>
+      <div
+        id="textBox"
+        className="icon"
+        onClick={() => handleShapeClick("textbox")}
+      >
+        <CiText />
+      </div>
+      <div
+        id="circle"
+        className="icon"
+        onClick={() => handleShapeClick("circle")}
+      >
+        <FaRegCircle />
+      </div>
+      <div
+        id="square"
+        className="icon"
+        onClick={() => handleShapeClick("square")}
+      >
+        <FaRegSquare />
+      </div>
+      <div id="upload" className="icon">
+        <input
+          ref={hiddenFileInput}
+          type="file"
+          onChange={handleFileChange}
+          style={{ display: "none" }}
+        />
+        <AiOutlineUpload onClick={() => hiddenFileInput.current.click()} />
       </div>
     </div>
   );

@@ -1,7 +1,12 @@
 import "./editor.css";
 import React, { useRef, useState, useEffect } from "react";
 import Navbar from "../navbar/navbar";
-import { DrawRectangle, DrawCircle, addImage } from "./tools/shapes/drawShape";
+import {
+  DrawRectangle,
+  DrawCircle,
+  addImage,
+  DrawTextbox,
+} from "./tools/shapes/drawShape";
 import Toolbar from "./tools/toolbar";
 import ColorPicker from "./tools/colorPicker";
 import { Canvas } from "fabric";
@@ -47,32 +52,16 @@ function Editor() {
     if (selectedShape === "square") {
       DrawRectangle(canvas);
     } else if (selectedShape === "circle") {
+      console.log(shape);
       DrawCircle(canvas);
+    } else if (selectedShape === "textbox") {
+      DrawTextbox(canvas);
     }
   };
 
   const handleColorChange = (color) => {
-    // let test = document.querySelector(".edit");
-    // test.style.background = color.hex;
     canvas.backgroundColor = color.hex;
     canvas.renderAll();
-  };
-
-  const handleCanvasClick = (event) => {
-    if (!canvasRef.current) return;
-
-    console.log("click:", canvasRef);
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    console.log("Canvas clicked at:", x, y);
-
-    if (selectedShape === "square") {
-      DrawRectangle(canvas);
-    } else if (selectedShape === "circle") {
-      DrawCircle(canvas);
-    }
   };
 
   function handleFileChange(event) {
@@ -84,6 +73,7 @@ function Editor() {
   return (
     <div className="editor">
       <Navbar />
+
       <div className="book">
         {showPicker && (
           <div>
@@ -91,17 +81,13 @@ function Editor() {
             <button onClick={() => setShowPicker(false)}>Done</button>
           </div>
         )}
-
         <Toolbar
           handleShapeClick={handleShapeClick}
           handleFileChange={handleFileChange}
           handlePaintClick={handlePaintClick}
         />
-        <canvas
-          ref={canvasRef}
-          onClick={handleCanvasClick}
-          id="canvas"
-        ></canvas>
+
+        <canvas ref={canvasRef} id="canvas"></canvas>
       </div>
     </div>
   );
