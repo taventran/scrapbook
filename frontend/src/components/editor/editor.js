@@ -15,10 +15,11 @@ function Editor() {
   useEffect(() => {
     if (canvasRef.current) {
       const initCanvas = new Canvas(canvasRef.current, {
-        width: 500,
-        height: 500,
+        width: 750,
+        height: 750,
       });
       initCanvas.backgroundColor = "#fff";
+      // Have to render when changes made
       initCanvas.renderAll();
       setCanvas(initCanvas); // Store canvas instance in state
       // Cleanup: Dispose of the canvas when the component unmounts
@@ -36,6 +37,7 @@ function Editor() {
 
   const handleShapeClick = (event) => {
     setSelectedShape(event.target.id);
+
     if (selectedShape === "square") {
       DrawRectangle(canvas);
     } else if (selectedShape === "circle") {

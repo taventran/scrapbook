@@ -10,7 +10,6 @@ export const DrawRectangle = (canvas) => {
   });
   console.log("looking at rectangle: ", rect);
   canvas.add(rect);
-  canvas.renderAll(); // Ensure the canvas is re-rendered
 };
 
 export const DrawCircle = (canvas) => {
@@ -22,5 +21,4 @@ export const DrawCircle = (canvas) => {
   });
   console.log("looking at circle: ", circle);
   canvas.add(circle);
-  canvas.renderAll();
 };
