@@ -10,7 +10,6 @@ import {
 import Toolbar from "./tools/toolbar";
 import ColorPicker from "./tools/colorPicker";
 import { Canvas } from "fabric";
-// import { useFabricCanvas } from "./fabricCanvas";
 
 function Editor() {
   const canvasRef = useRef(null);
@@ -21,14 +20,12 @@ function Editor() {
   useEffect(() => {
     if (canvasRef.current) {
       const initCanvas = new Canvas(canvasRef.current, {
-        width: 750,
-        height: 750,
+        width: canvasRef.current.parentElement.offsetWidth,
+        height: canvasRef.current.parentElement.offsetHeight,
       });
       initCanvas.backgroundColor = "#fff";
-      // Have to render when changes made
       initCanvas.renderAll();
-      setCanvas(initCanvas); // Store canvas instance in state
-      // Cleanup: Dispose of the canvas when the component unmounts
+      setCanvas(initCanvas);
       return () => {
         if (initCanvas) {
           initCanvas.dispose();
@@ -36,8 +33,6 @@ function Editor() {
       };
     }
   }, []);
-
-  console.log("Fabric Canvas:", canvas);
 
   const [selectedShape, setSelectedShape] = useState(null);
   const [showPicker, setShowPicker] = useState(false);
@@ -48,7 +43,6 @@ function Editor() {
 
   const handleShapeClick = (shape) => {
     setSelectedShape(shape);
-    console.log(selectedShape);
     if (selectedShape === "square") {
       DrawRectangle(canvas);
     } else if (selectedShape === "circle") {
@@ -79,7 +73,6 @@ function Editor() {
   return (
     <div className="editor">
       <Navbar />
-
       <div className="book">
         {showPicker && (
           <div>
@@ -92,7 +85,6 @@ function Editor() {
           handleFileChange={handleFileChange}
           handlePaintClick={handlePaintClick}
         />
-
         <canvas ref={canvasRef} id="canvas"></canvas>
       </div>
     </div>
