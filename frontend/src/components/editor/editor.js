@@ -60,8 +60,14 @@ function Editor() {
   };
 
   const handleColorChange = (color) => {
-    canvas.backgroundColor = color.hex;
-    canvas.renderAll();
+    let activeObject = canvas.getActiveObject();
+    console.log(activeObject);
+    if (activeObject) {
+      activeObject.set("fill", color.hex);
+    } else {
+      canvas.backgroundColor = color.hex;
+      canvas.renderAll();
+    }
   };
 
   function handleFileChange(event) {
