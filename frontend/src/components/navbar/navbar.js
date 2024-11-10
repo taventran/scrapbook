@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div className="nav">
+      <Link className="logo" to="/">
+        Scrapbook
+      </Link>
       <Link className="item" to="/">
         Home
       </Link>
@@ -15,7 +18,6 @@ function Navbar() {
         About
       </Link>
       <Link className="item">Support Me</Link>
-      <Link className="item"> </Link>
     </div>
   );
 }

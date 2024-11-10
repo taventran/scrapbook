@@ -5,18 +5,33 @@
     height: 50px;
     justify-content: flex-start;
     background-color: #c5d3e8;
+    border-bottom: 5px sold black;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 30px;
+    flex-grow: 1;
+    text-align: center;
+    color: inherit;
+    text-decoration: inherit;
 }
 
 .item {
     display: flex;
-    border-left: 1px solid black;
     width: 10rem;
     text-align: center;
     justify-content: center;
     align-items: center;
+    color: inherit;
+    text-decoration: inherit;
 }
-
 .item:hover {
-    cursor: pointer;
-    background-color: #d0e8c5;
+    text-decoration: underline;
+    text-decoration-color: greenyellow;
+    text-decoration-thickness: 5px;
+    text-underline-offset: 5px;
 }
