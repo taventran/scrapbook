@@ -12,6 +12,7 @@ import ColorPicker from "./tools/colorPicker";
 import { Canvas } from "fabric";
 
 function Editor() {
+  // Need canvasRef to make changes to Fabric canvas
   const canvasRef = useRef(null);
   const [canvas, setCanvas] = useState(null);
   const [file, setFile] = useState(null);
@@ -34,41 +35,55 @@ function Editor() {
     }
   }, []);
 
-  const [selectedShape, setSelectedShape] = useState(null);
+  const [shape, setSelectedShape] = useState(null);
   const [showPicker, setShowPicker] = useState(false);
 
-  const handlePaintClick = (shape) => {
+  const handlePaintClick = () => {
     setShowPicker(!showPicker);
   };
 
   const handleShapeClick = (shape) => {
     setSelectedShape(shape);
-    if (selectedShape === "square") {
+    if (shape === "square") {
       DrawRectangle(canvas);
-    } else if (selectedShape === "circle") {
-      console.log(shape);
+    } else if (shape === "circle") {
       DrawCircle(canvas);
-    } else if (selectedShape === "textbox") {
+    } else if (shape === "textbox") {
       DrawTextbox(canvas);
     }
   };
 
   const handleColorChange = (color) => {
     let activeObject = canvas.getActiveObject();
-    console.log(activeObject);
     if (activeObject) {
       activeObject.set("fill", color.hex);
+      // Need render all so it changes before user selects off object
+      canvas.renderAll();
     } else {
       canvas.backgroundColor = color.hex;
       canvas.renderAll();
     }
   };
 
+  const deleteObject = () => {
+    let activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      console.log(activeObject);
+      canvas.remove(activeObject);
+      console.log(activeObject);
+    }
+  };
+
   function handleFileChange(event) {
-    console.log(event.target.files);
     setFile(URL.createObjectURL(event.target.files[0]));
-    addImage(canvas, file);
   }
+
+  useEffect(() => {
+    if (file) {
+      console.log("Updated file:", file);
+      addImage(canvas, file);
+    }
+  }, [canvas, file]);
 
   return (
     <div className="editor">
@@ -84,6 +99,7 @@ function Editor() {
           handleShapeClick={handleShapeClick}
           handleFileChange={handleFileChange}
           handlePaintClick={handlePaintClick}
+          deleteObject={deleteObject}
         />
         <canvas ref={canvasRef} id="canvas"></canvas>
       </div>

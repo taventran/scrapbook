@@ -2,12 +2,13 @@
 // import squareIcon from "../../svgs/square.svg";
 import { FaRegSquare } from "react-icons/fa";
 import { FaRegCircle } from "react-icons/fa";
+import { FaRegTrashAlt } from "react-icons/fa";
 import { AiOutlineUpload } from "react-icons/ai";
 import { RiPaintFill } from "react-icons/ri";
 import { CiText } from "react-icons/ci";
 import { useRef } from "react";
 
-function Toolbar({ handleShapeClick, handleFileChange, handlePaintClick }) {
+function Toolbar({ handleShapeClick, handleFileChange, handlePaintClick, deleteObject }) {
   const hiddenFileInput = useRef(null);
   return (
     <div className="toolbar">
@@ -43,6 +44,9 @@ function Toolbar({ handleShapeClick, handleFileChange, handlePaintClick }) {
           style={{ display: "none" }}
         />
         <AiOutlineUpload onClick={() => hiddenFileInput.current.click()} />
+      </div>
+      <div id="trash" className="icon">
+        <FaRegTrashAlt onClick={() => deleteObject()}/>
       </div>
     </div>
   );
