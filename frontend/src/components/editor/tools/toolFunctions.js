@@ -1,4 +1,12 @@
-import { Rect, Circle, FabricImage, Textbox, Triangle, Polygon } from "fabric";
+import {
+  Rect,
+  Circle,
+  FabricImage,
+  Textbox,
+  Triangle,
+  Polygon,
+  Line,
+} from "fabric";
 
 export const DrawRectangle = (canvas) => {
   const rect = new Rect({
@@ -77,6 +85,14 @@ export const addImage = (canvas, file, id) => {
 
     canvas.renderAll();
   });
+};
+
+export const DrawLine = (canvas) => {
+  const line = new Line([50, 100, 150, 100], {
+    stroke: "black", // Set line color
+    strokeWidth: 4, // Set line thickness
+  });
+  canvas.add(line);
 };
 
 export const DrawTextbox = (canvas) => {

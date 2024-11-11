@@ -11,6 +11,7 @@ import { AiOutlineUpload } from "react-icons/ai";
 import { RiPaintFill } from "react-icons/ri";
 import { FiTriangle } from "react-icons/fi";
 import { CiText } from "react-icons/ci";
+import { TfiLayoutLineSolid } from "react-icons/tfi";
 import { useRef } from "react";
 
 function Toolbar({
@@ -50,12 +51,16 @@ function Toolbar({
       <div id="star" className="icon" onClick={() => handleShapeClick("star")}>
         <FaRegStar />
       </div>
+
       <div
         id="triangle"
         className="icon"
         onClick={() => handleShapeClick("triangle")}
       >
         <FiTriangle />
+      </div>
+      <div id="line" className="icon" onClick={() => handleShapeClick("line")}>
+        <TfiLayoutLineSolid />
       </div>
       <div id="upload" className="icon">
         <input

@@ -8,6 +8,7 @@ import {
   DrawTextbox,
   DrawTriangle,
   DrawStar,
+  DrawLine,
 } from "./tools/toolFunctions";
 import Toolbar from "./tools/toolbar";
 import ColorPicker from "./tools/colorPicker";
@@ -43,18 +44,20 @@ function Editor() {
     setShowPicker(!showPicker);
   };
 
-  const handleShapeClick = (shape) => {
-    // setSelectedShape(shape);
-    if (shape === "square") {
+  const handleShapeClick = (tool) => {
+    // setSelectedShape(tool);
+    if (tool === "square") {
       DrawRectangle(canvas);
-    } else if (shape === "circle") {
+    } else if (tool === "circle") {
       DrawCircle(canvas);
-    } else if (shape === "textbox") {
+    } else if (tool === "textbox") {
       DrawTextbox(canvas);
-    } else if (shape === "triangle") {
+    } else if (tool === "triangle") {
       DrawTriangle(canvas);
-    } else if (shape === "star") {
+    } else if (tool === "star") {
       DrawStar(canvas);
+    } else if (tool === "line") {
+      DrawLine(canvas);
     }
   };
 
@@ -62,6 +65,7 @@ function Editor() {
     let activeObject = canvas.getActiveObject();
     if (activeObject) {
       activeObject.set("fill", color.hex);
+      console.log(activeObject);
       // Need render all so it changes before user selects off object
       canvas.renderAll();
     } else {
@@ -74,9 +78,7 @@ function Editor() {
   const deleteObject = () => {
     let activeObject = canvas.getActiveObject();
     if (activeObject) {
-      console.log(activeObject);
       canvas.remove(activeObject);
-      console.log(activeObject);
     }
   };
 
