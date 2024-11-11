@@ -6,7 +6,9 @@ import {
   DrawCircle,
   addImage,
   DrawTextbox,
-} from "./tools/shapes/drawShape";
+  DrawTriangle,
+  DrawStar,
+} from "./tools/toolFunctions";
 import Toolbar from "./tools/toolbar";
 import ColorPicker from "./tools/colorPicker";
 import { Canvas } from "fabric";
@@ -16,6 +18,8 @@ function Editor() {
   const canvasRef = useRef(null);
   const [canvas, setCanvas] = useState(null);
   const [file, setFile] = useState(null);
+  // const [shape, setSelectedShape] = useState(null);
+  const [showPicker, setShowPicker] = useState(false);
 
   // Initialize Fabric.js canvas
   useEffect(() => {
@@ -35,21 +39,22 @@ function Editor() {
     }
   }, []);
 
-  const [shape, setSelectedShape] = useState(null);
-  const [showPicker, setShowPicker] = useState(false);
-
   const handlePaintClick = () => {
     setShowPicker(!showPicker);
   };
 
   const handleShapeClick = (shape) => {
-    setSelectedShape(shape);
+    // setSelectedShape(shape);
     if (shape === "square") {
       DrawRectangle(canvas);
     } else if (shape === "circle") {
       DrawCircle(canvas);
     } else if (shape === "textbox") {
       DrawTextbox(canvas);
+    } else if (shape === "triangle") {
+      DrawTriangle(canvas);
+    } else if (shape === "star") {
+      DrawStar(canvas);
     }
   };
 
