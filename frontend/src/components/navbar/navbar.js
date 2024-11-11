@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <div className="nav">
       <Link className="logo" to="/">
-        Scrapbook
+        Scrapsite
       </Link>
       <Link className="item" to="/">
         Home
@@ -13,11 +13,12 @@ function Navbar() {
       <Link className="item" to="/create">
         Create
       </Link>
-      <Link className="item">FAQ</Link>
       <Link className="item" to="/about">
         About
       </Link>
-      <Link className="item">Support Me</Link>
+      <Link className="item" to="/">
+        Support Us
+      </Link>
     </div>
   );
 }

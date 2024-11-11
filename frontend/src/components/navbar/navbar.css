@@ -2,13 +2,15 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 50px;
+    height: 4rem;
     justify-content: flex-start;
     background-color: #c5d3e8;
     border-bottom: 5px sold black;
 }
 
 .logo {
+    font-family: "Lato";
+    font-size: 3rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -16,22 +18,48 @@
     margin-left: 30px;
     flex-grow: 1;
     text-align: center;
-    color: inherit;
+    font-border: black;
+    -webkit-text-stroke-width: 0.09rem;
+    -webkit-text-stroke-color: black;
+    color: whitesmoke;
     text-decoration: inherit;
 }
 
 .item {
+    font-family: "Lato";
+    font-size: 1rem;
     display: flex;
-    width: 10rem;
+    width: 6rem;
     text-align: center;
     justify-content: center;
     align-items: center;
     color: inherit;
-    text-decoration: inherit;
+    text-decoration: none;
+    position: relative;
 }
-.item:hover {
-    text-decoration: underline;
-    text-decoration-color: greenyellow;
-    text-decoration-thickness: 5px;
-    text-underline-offset: 5px;
+
+.item:last-child {
+    margin-right: 3rem;
+}
+
+.item::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 10px;
+    left: 0;
+    background-color: red;
+    transform: scaleX(0);
+    transform-origin: top left;
+    transition: transform 0.9s ease;
+}
+
+.item::hover {
+    color: red;
+}
+
+.item:hover::before {
+    transform: scaleX(1);
 }
