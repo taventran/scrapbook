@@ -59,9 +59,22 @@ export const DrawStar = (canvas) => {
   canvas.add(star);
 };
 
-export const addImage = (canvas, file) => {
+export const addImage = (canvas, file, id) => {
   FabricImage.fromURL(file).then(function (img) {
-    canvas.add(img);
+    if (id === "background") {
+      const canvasWidth = canvas.getWidth();
+      const canvasHeight = canvas.getHeight();
+      // Scale the image to fit within the canvas width and height
+      // Scale the image to stretch to fit the canvas size
+      img.scaleToHeight(canvasHeight);
+      img.scaleToWidth(canvasWidth);
+      canvas.backgroundImage = img;
+      canvas.backgroundColor = "#fff";
+      img.canvas = canvas;
+    } else {
+      canvas.add(img);
+    }
+
     canvas.renderAll();
   });
 };

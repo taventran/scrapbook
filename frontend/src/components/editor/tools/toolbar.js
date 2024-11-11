@@ -5,6 +5,7 @@ import {
   FaRegCircle,
   FaRegTrashAlt,
   FaRegStar,
+  FaRegImage,
 } from "react-icons/fa";
 import { AiOutlineUpload } from "react-icons/ai";
 import { RiPaintFill } from "react-icons/ri";
@@ -18,7 +19,8 @@ function Toolbar({
   handlePaintClick,
   deleteObject,
 }) {
-  const hiddenFileInput = useRef(null);
+  const hiddenUploadInput = useRef(null);
+  const hiddenBackgroundInput = useRef(null);
   return (
     <div className="toolbar">
       <div id="paint" className="icon" onClick={handlePaintClick}>
@@ -57,12 +59,22 @@ function Toolbar({
       </div>
       <div id="upload" className="icon">
         <input
-          ref={hiddenFileInput}
+          ref={hiddenUploadInput}
           type="file"
           onChange={handleFileChange}
           style={{ display: "none" }}
         />
-        <AiOutlineUpload onClick={() => hiddenFileInput.current.click()} />
+        <AiOutlineUpload onClick={() => hiddenUploadInput.current.click()} />
+      </div>
+      <div id="background" className="icon">
+        <input
+          ref={hiddenBackgroundInput}
+          type="file"
+          id="canvasBackground"
+          onChange={handleFileChange}
+          style={{ display: "none" }}
+        />
+        <FaRegImage onClick={() => hiddenBackgroundInput.current.click()} />
       </div>
       <div id="trash" className="icon">
         <FaRegTrashAlt onClick={() => deleteObject()} />

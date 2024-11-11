@@ -11,7 +11,6 @@
     display: flex;
     width: 100vw;
     height: 100vh;
-    border: 3px solid #fff8de;
     overflow: hidden; /* Prevent extra scrollbars */
 }
 
@@ -19,8 +18,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: whitesmoke;
-    border: 2px solid black;
+    background-color: var(--color-tertiary);
+    border-right: 5px solid var(--color-fifth);
     width: 50px; /* Adjust width as needed */
     height: 100%;
     flex-shrink: 0; /* Prevent toolbar from shrinking */

@@ -4,8 +4,8 @@
     width: 100%;
     height: 4rem;
     justify-content: flex-start;
-    background-color: #c5d3e8;
-    border-bottom: 5px sold black;
+    background-color: var(--color-secondary);
+    border-bottom: 5px solid var(--color-fifth);
 }
 
 .logo {
@@ -18,10 +18,9 @@
     margin-left: 30px;
     flex-grow: 1;
     text-align: center;
-    font-border: black;
-    -webkit-text-stroke-width: 0.09rem;
+    -webkit-text-stroke-width: 0.15rem;
     -webkit-text-stroke-color: black;
-    color: whitesmoke;
+    color: var(--color-fifth);
     text-decoration: inherit;
 }
 
@@ -33,7 +32,7 @@
     text-align: center;
     justify-content: center;
     align-items: center;
-    color: inherit;
+    color: var(--color-fifth);
     text-decoration: none;
     position: relative;
 }
@@ -43,21 +42,19 @@
 }
 
 .item::before {
-    content: "";
+    content: attr(data-text);
     position: absolute;
     display: block;
     width: 100%;
-    height: 2px;
+    height: 3px;
     bottom: 10px;
     left: 0;
-    background-color: red;
+    overflow: hidden;
+    color: var(--color-fourth);
+    background-color: var(--color-fourth);
     transform: scaleX(0);
     transform-origin: top left;
     transition: transform 0.9s ease;
-}
-
-.item::hover {
-    color: red;
 }
 
 .item:hover::before {

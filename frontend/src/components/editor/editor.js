@@ -65,6 +65,7 @@ function Editor() {
       // Need render all so it changes before user selects off object
       canvas.renderAll();
     } else {
+      canvas.backgroundImage = "";
       canvas.backgroundColor = color.hex;
       canvas.renderAll();
     }
@@ -80,13 +81,16 @@ function Editor() {
   };
 
   function handleFileChange(event) {
-    setFile(URL.createObjectURL(event.target.files[0]));
+    const parentDivID = event.target.closest("div").id;
+    console.log(parentDivID);
+    const fileURL = URL.createObjectURL(event.target.files[0]);
+    setFile([parentDivID, fileURL]);
   }
 
   useEffect(() => {
     if (file) {
-      console.log("Updated file:", file);
-      addImage(canvas, file);
+      console.log("Updated file:", file[1]);
+      addImage(canvas, file[1], file[0]);
     }
   }, [canvas, file]);
 
