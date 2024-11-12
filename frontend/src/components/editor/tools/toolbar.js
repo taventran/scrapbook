@@ -7,6 +7,7 @@ import {
   FaRegStar,
   FaRegImage,
 } from "react-icons/fa";
+import { MdOutlineSaveAlt } from "react-icons/md";
 import { AiOutlineUpload } from "react-icons/ai";
 import { RiPaintFill } from "react-icons/ri";
 import { FiTriangle } from "react-icons/fi";
@@ -83,6 +84,10 @@ function Toolbar({
       </div>
       <div id="trash" className="icon">
         <FaRegTrashAlt onClick={() => deleteObject()} />
+      </div>
+
+      <div id="download" className="icon">
+        <MdOutlineSaveAlt onClick={() => handleShapeClick("download")} />
       </div>
     </div>
   );

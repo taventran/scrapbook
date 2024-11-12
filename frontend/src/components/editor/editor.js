@@ -9,6 +9,7 @@ import {
   DrawTriangle,
   DrawStar,
   DrawLine,
+  Download,
 } from "./tools/toolFunctions";
 import Toolbar from "./tools/toolbar";
 import ColorPicker from "./tools/colorPicker";
@@ -58,6 +59,8 @@ function Editor() {
       DrawStar(canvas);
     } else if (tool === "line") {
       DrawLine(canvas);
+    } else if (tool === "download") {
+      Download(canvas);
     }
   };
 

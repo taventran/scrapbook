@@ -107,3 +107,12 @@ export const DrawTextbox = (canvas) => {
   canvas.add(textbox);
   canvas.renderAll();
 };
+
+export const Download = (canvas) => {
+  let url = canvas.toDataURL("image/png");
+  let link = document.createElement("a");
+  link.download = "filename.png";
+  link.href = url;
+  link.click();
+  console.log(url);
+};
