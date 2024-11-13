@@ -7,13 +7,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <Router>
-      <div>
-        <Routes>
-          <Route path="/about" element={<About />} />
-          <Route path="/" element={<HomeScreen />} />
-          <Route path="/create" element={<Editor />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/create" element={<Editor />} />
+      </Routes>
     </Router>
   );
 }
