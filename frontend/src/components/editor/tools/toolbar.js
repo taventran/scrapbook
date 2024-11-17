@@ -13,6 +13,7 @@ import { RiPaintFill } from "react-icons/ri";
 import { FiTriangle } from "react-icons/fi";
 import { CiText } from "react-icons/ci";
 import { TfiLayoutLineSolid } from "react-icons/tfi";
+import { TiPencil } from "react-icons/ti";
 import { useRef } from "react";
 
 function Toolbar({
@@ -25,6 +26,9 @@ function Toolbar({
   const hiddenBackgroundInput = useRef(null);
   return (
     <div className="toolbar">
+      <div id="pencil" className="icon" onClick={handlePaintClick}>
+        <TiPencil />
+      </div>
       <div id="paint" className="icon" onClick={handlePaintClick}>
         <RiPaintFill />
       </div>
