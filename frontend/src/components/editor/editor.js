@@ -13,7 +13,7 @@ import {
 } from "./tools/toolFunctions";
 import Toolbar from "./tools/toolbar";
 import ColorPicker from "./tools/colorPicker";
-import { Canvas } from "fabric";
+import { Canvas, PencilBrush } from "fabric";
 
 function Editor() {
   // Need canvasRef to make changes to Fabric canvas
@@ -21,6 +21,8 @@ function Editor() {
   const [canvas, setCanvas] = useState(null);
   const [file, setFile] = useState(null);
   // const [shape, setSelectedShape] = useState(null);
+  const [tool, setTool] = useState(null);
+  const [draw, setDraw] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
 
   // Initialize Fabric.js canvas
@@ -41,17 +43,52 @@ function Editor() {
     }
   }, []);
 
+  // Handle drawing mode based on the "draw" state
+  useEffect(() => {
+    if (canvas) {
+      if (draw) {
+        console.log("Draw On!");
+        canvas.isDrawingMode = true;
+        canvas.freeDrawingBrush = new PencilBrush(canvas);
+        canvas.freeDrawingBrush.color = "#000";
+        canvas.freeDrawingBrush.width = 5; // Set brush size
+      } else {
+        canvas.isDrawingMode = false;
+      }
+      canvas.renderAll();
+    }
+  }, [canvas, draw]);
+
   const handlePaintClick = () => {
     setShowPicker(!showPicker);
   };
 
-  const handleShapeClick = (tool) => {
+  const handlePencilClick = () => {
+    setDraw(!draw);
+    if (draw) {
+      setTool("pencil");
+    } else {
+      return;
+    }
+  };
+
+  const handleShapeClick = (changeTool) => {
     // setSelectedShape(tool);
+    //
+
+    if (changeTool !== tool) {
+      setTool(changeTool);
+    }
+
+    if (draw) {
+      handlePencilClick();
+    }
+
     if (tool === "square") {
       DrawRectangle(canvas);
     } else if (tool === "circle") {
       DrawCircle(canvas);
-    } else if (tool === "textbox") {
+    } else if (tool === "textBox") {
       DrawTextbox(canvas);
     } else if (tool === "triangle") {
       DrawTriangle(canvas);
@@ -66,7 +103,9 @@ function Editor() {
 
   const handleColorChange = (color) => {
     let activeObject = canvas.getActiveObject();
-    if (activeObject) {
+    if (tool === "pencil") {
+      canvas.freeDrawingBrush.color = color.hex;
+    } else if (activeObject) {
       activeObject.set("fill", color.hex);
       console.log(activeObject);
       // Need render all so it changes before user selects off object
@@ -113,7 +152,9 @@ function Editor() {
           handleShapeClick={handleShapeClick}
           handleFileChange={handleFileChange}
           handlePaintClick={handlePaintClick}
+          handlePencilClick={handlePencilClick}
           deleteObject={deleteObject}
+          currentTool={tool}
         />
         <canvas ref={canvasRef} id="canvas"></canvas>
       </div>

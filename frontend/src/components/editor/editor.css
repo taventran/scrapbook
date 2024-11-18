@@ -35,6 +35,12 @@
     cursor: pointer;
 }
 
+/* Add a highlight effect for the selected tool */
+.icon.selected {
+    background-color: #d3d3d3; /* Change this to your preferred highlight color */
+    border-radius: 8px;
+}
+
 #canvas {
     flex-grow: 1; /* Allow canvas to take up remaining space */
     border: 1px solid #ccc;

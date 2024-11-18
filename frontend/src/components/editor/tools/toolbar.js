@@ -1,5 +1,3 @@
-// import circleIcon from "../../svgs/circle.svg";
-// import squareIcon from "../../svgs/square.svg";
 import {
   FaRegSquare,
   FaRegCircle,
@@ -20,51 +18,69 @@ function Toolbar({
   handleShapeClick,
   handleFileChange,
   handlePaintClick,
+  handlePencilClick,
   deleteObject,
+  currentTool,
 }) {
   const hiddenUploadInput = useRef(null);
   const hiddenBackgroundInput = useRef(null);
+
   return (
     <div className="toolbar">
-      <div id="pencil" className="icon" onClick={handlePaintClick}>
+      <div
+        id="pencil"
+        className={`icon ${currentTool === "pencil" ? "selected" : ""}`}
+        onClick={handlePencilClick}
+      >
         <TiPencil />
       </div>
-      <div id="paint" className="icon" onClick={handlePaintClick}>
+      <div
+        id="paint"
+        className={`icon ${currentTool === "paint" ? "selected" : ""}`}
+        onClick={handlePaintClick}
+      >
         <RiPaintFill />
       </div>
       <div
         id="textBox"
-        className="icon"
-        onClick={() => handleShapeClick("textbox")}
+        className={`icon ${currentTool === "textBox" ? "selected" : ""}`}
+        onClick={() => handleShapeClick("textBox")}
       >
         <CiText />
       </div>
       <div
         id="circle"
-        className="icon"
+        className={`icon ${currentTool === "circle" ? "selected" : ""}`}
         onClick={() => handleShapeClick("circle")}
       >
         <FaRegCircle />
       </div>
       <div
         id="square"
-        className="icon"
+        className={`icon ${currentTool === "square" ? "selected" : ""}`}
         onClick={() => handleShapeClick("square")}
       >
         <FaRegSquare />
       </div>
-      <div id="star" className="icon" onClick={() => handleShapeClick("star")}>
+      <div
+        id="star"
+        className={`icon ${currentTool === "star" ? "selected" : ""}`}
+        onClick={() => handleShapeClick("star")}
+      >
         <FaRegStar />
       </div>
-
       <div
         id="triangle"
-        className="icon"
+        className={`icon ${currentTool === "triangle" ? "selected" : ""}`}
         onClick={() => handleShapeClick("triangle")}
       >
         <FiTriangle />
       </div>
-      <div id="line" className="icon" onClick={() => handleShapeClick("line")}>
+      <div
+        id="line"
+        className={`icon ${currentTool === "line" ? "selected" : ""}`}
+        onClick={() => handleShapeClick("line")}
+      >
         <TfiLayoutLineSolid />
       </div>
       <div id="upload" className="icon">
@@ -86,12 +102,19 @@ function Toolbar({
         />
         <FaRegImage onClick={() => hiddenBackgroundInput.current.click()} />
       </div>
-      <div id="trash" className="icon">
-        <FaRegTrashAlt onClick={() => deleteObject()} />
+      <div
+        id="trash"
+        className={`icon ${currentTool === "trash" ? "selected" : ""}`}
+        onClick={deleteObject}
+      >
+        <FaRegTrashAlt />
       </div>
-
-      <div id="download" className="icon">
-        <MdOutlineSaveAlt onClick={() => handleShapeClick("download")} />
+      <div
+        id="download"
+        className={`icon ${currentTool === "download" ? "selected" : ""}`}
+        onClick={() => handleShapeClick("download")}
+      >
+        <MdOutlineSaveAlt />
       </div>
     </div>
   );
