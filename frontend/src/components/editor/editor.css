@@ -32,13 +32,15 @@
 }
 
 .icon:hover {
+    color: #d3d3d3; /* Change this to your preferred highlight color */
     cursor: pointer;
 }
 
 /* Add a highlight effect for the selected tool */
 .icon.selected {
-    background-color: #d3d3d3; /* Change this to your preferred highlight color */
-    border-radius: 8px;
+    color: #d3d3d3; /* Change this to your preferred highlight color */
+
+    color: #d3d3d3;
 }
 
 #canvas {

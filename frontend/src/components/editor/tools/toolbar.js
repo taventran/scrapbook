@@ -30,7 +30,7 @@ function Toolbar({
       <div
         id="pencil"
         className={`icon ${currentTool === "pencil" ? "selected" : ""}`}
-        onClick={handlePencilClick}
+        onClick={() => handleShapeClick("pencil")}
       >
         <TiPencil />
       </div>

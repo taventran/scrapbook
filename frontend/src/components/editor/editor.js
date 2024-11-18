@@ -65,38 +65,39 @@ function Editor() {
 
   const handlePencilClick = () => {
     setDraw(!draw);
-    if (draw) {
-      setTool("pencil");
-    } else {
-      return;
-    }
   };
 
   const handleShapeClick = (changeTool) => {
     // setSelectedShape(tool);
-    //
 
     if (changeTool !== tool) {
       setTool(changeTool);
+    } else {
+      if (changeTool === "pencil") {
+        handlePencilClick();
+      }
+      // Deselect
+      setTool(null);
+      return;
     }
 
-    if (draw) {
+    if (changeTool === "pencil") {
       handlePencilClick();
     }
 
-    if (tool === "square") {
+    if (changeTool === "square") {
       DrawRectangle(canvas);
-    } else if (tool === "circle") {
+    } else if (changeTool === "circle") {
       DrawCircle(canvas);
-    } else if (tool === "textBox") {
+    } else if (changeTool === "textBox") {
       DrawTextbox(canvas);
-    } else if (tool === "triangle") {
+    } else if (changeTool === "triangle") {
       DrawTriangle(canvas);
-    } else if (tool === "star") {
+    } else if (changeTool === "star") {
       DrawStar(canvas);
-    } else if (tool === "line") {
+    } else if (changeTool === "line") {
       DrawLine(canvas);
-    } else if (tool === "download") {
+    } else if (changeTool === "download") {
       Download(canvas);
     }
   };
