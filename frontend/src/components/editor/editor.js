@@ -69,7 +69,6 @@ function Editor() {
 
   const handleShapeClick = (changeTool) => {
     // setSelectedShape(tool);
-
     if (changeTool !== tool) {
       setTool(changeTool);
     } else {
@@ -149,15 +148,20 @@ function Editor() {
             <button onClick={() => setShowPicker(false)}>Done</button>
           </div>
         )}
-        <Toolbar
-          handleShapeClick={handleShapeClick}
-          handleFileChange={handleFileChange}
-          handlePaintClick={handlePaintClick}
-          handlePencilClick={handlePencilClick}
-          deleteObject={deleteObject}
-          currentTool={tool}
-        />
-        <canvas ref={canvasRef} id="canvas"></canvas>
+
+        <div className="canvasContainer">
+          <Toolbar
+            handleShapeClick={handleShapeClick}
+            handleFileChange={handleFileChange}
+            handlePaintClick={handlePaintClick}
+            handlePencilClick={handlePencilClick}
+            deleteObject={deleteObject}
+            currentTool={tool}
+          />
+          <div className="size">
+            <canvas ref={canvasRef} id="canvas"></canvas>
+          </div>
+        </div>
       </div>
     </div>
   );
