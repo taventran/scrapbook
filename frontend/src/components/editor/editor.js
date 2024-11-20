@@ -161,7 +161,9 @@ function Editor() {
           <div className="size">
             <canvas ref={canvasRef} id="canvas"></canvas>
           </div>
+
         </div>
+
       </div>
     </div>
   );
