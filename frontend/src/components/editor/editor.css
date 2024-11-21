@@ -55,8 +55,8 @@
 }
 
 .size {
-    grid-column: 2 / span 3; /* Ensures canvas is in the second column */
-    grid-row: span 4;
+    grid-column-start: 2; /* Ensures canvas is in the second column */
+    grid-row: 1 / span 3;
     align-self: center; /* Vertically centers the canvas */
     justify-self: center; /* Horizontally centers the canvas */
     overflow: scroll;
@@ -65,4 +65,7 @@
 #canvas {
     border: 2px solid black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    height: 1000px;
+    width: 1000px;
 }
+
