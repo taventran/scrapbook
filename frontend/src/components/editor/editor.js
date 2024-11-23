@@ -54,6 +54,7 @@ function Editor() {
         canvas.freeDrawingBrush.width = 5; // Set brush size
       } else {
         canvas.isDrawingMode = false;
+        console.log("Drawing Off!")
       }
       canvas.renderAll();
     }
@@ -69,20 +70,23 @@ function Editor() {
 
   const handleShapeClick = (changeTool) => {
     // setSelectedShape(tool);
+    console.log(changeTool);
     if (changeTool !== tool) {
+      if (changeTool === "pencil") {
+        handlePencilClick();
+        console.log(changeTool);
+      } else if (tool === "pencil") {
+        handlePencilClick();
+      }
       setTool(changeTool);
     } else {
+      // Deselect
       if (changeTool === "pencil") {
         handlePencilClick();
       }
-      // Deselect
       setTool(null);
-      return;
     }
 
-    if (changeTool === "pencil") {
-      handlePencilClick();
-    }
 
     if (changeTool === "square") {
       DrawRectangle(canvas);
