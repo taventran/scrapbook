@@ -29,6 +29,19 @@
     color: #d3d3d3; /* Change this to your preferred highlight color */
     color: #d3d3d3;
 }
+.icontiptext {
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+}
+.icon:hover .icontiptext{
+  visibility: visible;
+  transition-delay: 0.3s;
+}
 
 .canvasContainer {
     display: grid;
@@ -50,7 +63,7 @@
     border-right: 5px solid var(--color-fifth);
     border-bottom: 5px solid var(--color-fifth);
     border-top: 5px solid var(--color-fifth);
-    height: 60%;
+    height: 80%;
     flex-shrink: 0; /* Prevent toolbar from shrinking */
 }
 
@@ -65,8 +78,7 @@
 #canvas {
     border: 2px solid black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    height: 200px;
-    width: 200px;
-
+    height: 500px;
+    width: 500px;
 }
 

@@ -24,7 +24,20 @@ function Toolbar({
 }) {
   const hiddenUploadInput = useRef(null);
   const hiddenBackgroundInput = useRef(null);
-
+//  const [hover, setHover] = useState(null);
+//  const handleMouseOver = (e) => {
+//    switch (e.target.id) {
+//      case "pencil":
+//        setHover("pencil")
+//        break
+//      case "paint":
+//        setHover("paint")
+//        break
+//      case "textBox":
+//        setHover("textBox")
+//        break
+//    }
+//  }
   return (
     <div className="toolbar">
       <div
@@ -33,6 +46,7 @@ function Toolbar({
         onClick={() => handleShapeClick("pencil")}
       >
         <TiPencil />
+        <span class="icontiptext">Draw</span>
       </div>
       <div
         id="paint"
@@ -40,6 +54,7 @@ function Toolbar({
         onClick={handlePaintClick}
       >
         <RiPaintFill />
+        <span class="icontiptext">Fill</span>
       </div>
       <div
         id="textBox"
@@ -47,13 +62,15 @@ function Toolbar({
         onClick={() => handleShapeClick("textBox")}
       >
         <CiText />
+        <span class="icontiptext">Text Box</span>
       </div>
       <div
         id="circle"
         className={`icon ${currentTool === "circle" ? "selected" : ""}`}
         onClick={() => handleShapeClick("circle")}
       >
-        <FaRegCircle />
+         <FaRegCircle />
+        <span class="icontiptext">Circle</span>
       </div>
       <div
         id="square"
@@ -61,6 +78,7 @@ function Toolbar({
         onClick={() => handleShapeClick("square")}
       >
         <FaRegSquare />
+        <span class="icontiptext">Square</span>
       </div>
       <div
         id="star"
@@ -68,6 +86,7 @@ function Toolbar({
         onClick={() => handleShapeClick("star")}
       >
         <FaRegStar />
+        <span class="icontiptext">Star</span>
       </div>
       <div
         id="triangle"
@@ -75,6 +94,7 @@ function Toolbar({
         onClick={() => handleShapeClick("triangle")}
       >
         <FiTriangle />
+        <span class="icontiptext">Triangle</span>
       </div>
       <div
         id="line"
@@ -82,6 +102,7 @@ function Toolbar({
         onClick={() => handleShapeClick("line")}
       >
         <TfiLayoutLineSolid />
+        <span class="icontiptext">Line</span>
       </div>
       <div id="upload" className="icon">
         <input
@@ -91,6 +112,7 @@ function Toolbar({
           style={{ display: "none" }}
         />
         <AiOutlineUpload onClick={() => hiddenUploadInput.current.click()} />
+        <span class="icontiptext">Add Photo</span>
       </div>
       <div id="background" className="icon">
         <input
@@ -101,6 +123,7 @@ function Toolbar({
           style={{ display: "none" }}
         />
         <FaRegImage onClick={() => hiddenBackgroundInput.current.click()} />
+        <span class="icontiptext">Background Photo</span>
       </div>
       <div
         id="trash"
@@ -108,6 +131,7 @@ function Toolbar({
         onClick={deleteObject}
       >
         <FaRegTrashAlt />
+        <span class="icontiptext">Delete Object</span>
       </div>
       <div
         id="download"
@@ -115,6 +139,7 @@ function Toolbar({
         onClick={() => handleShapeClick("download")}
       >
         <MdOutlineSaveAlt />
+        <span class="icontiptext">Download Canvas</span>
       </div>
     </div>
   );
