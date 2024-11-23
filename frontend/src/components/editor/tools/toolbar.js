@@ -18,26 +18,11 @@ function Toolbar({
   handleShapeClick,
   handleFileChange,
   handlePaintClick,
-  handlePencilClick,
   deleteObject,
   currentTool,
 }) {
   const hiddenUploadInput = useRef(null);
   const hiddenBackgroundInput = useRef(null);
-//  const [hover, setHover] = useState(null);
-//  const handleMouseOver = (e) => {
-//    switch (e.target.id) {
-//      case "pencil":
-//        setHover("pencil")
-//        break
-//      case "paint":
-//        setHover("paint")
-//        break
-//      case "textBox":
-//        setHover("textBox")
-//        break
-//    }
-//  }
   return (
     <div className="toolbar">
       <div

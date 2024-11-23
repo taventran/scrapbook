@@ -72,6 +72,7 @@ function Editor() {
     // setSelectedShape(tool);
     console.log(changeTool);
     if (changeTool !== tool) {
+      // Necessary logic to start and stop draw
       if (changeTool === "pencil") {
         handlePencilClick();
         console.log(changeTool);
@@ -158,7 +159,6 @@ function Editor() {
             handleShapeClick={handleShapeClick}
             handleFileChange={handleFileChange}
             handlePaintClick={handlePaintClick}
-            handlePencilClick={handlePencilClick}
             deleteObject={deleteObject}
             currentTool={tool}
           />
