@@ -4,13 +4,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 100vh; /* Ensure the editor takes full viewport height */
 }
 
 .book {
     display: flex;
-    width: 100vw;
-    height: 95vh;
 }
 
 .icon {
@@ -20,7 +17,7 @@
 }
 
 .icon:hover {
-    color: #d3d3d3; /* Change this to your preferred highlight color */
+    color: #d3d3d3;
     cursor: pointer;
 }
 
@@ -29,6 +26,7 @@
     color: #d3d3d3; /* Change this to your preferred highlight color */
     color: #d3d3d3;
 }
+/* Hovering over tools display text */
 .icontiptext {
   visibility: hidden;
   padding: 0.25em 0.5em;
@@ -44,9 +42,9 @@
 }
 
 .canvasContainer {
-    display: grid;
+    display: flex;
     grid-template-columns: 4rem 1fr;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 200px);
     width: 100vw;
     background-color: grey;
 }
@@ -63,11 +61,11 @@
     border-right: 5px solid var(--color-fifth);
     border-bottom: 5px solid var(--color-fifth);
     border-top: 5px solid var(--color-fifth);
-    height: 80%;
-    flex-shrink: 0; /* Prevent toolbar from shrinking */
+    height: 70%;
 }
 
 .size {
+    flex-grow: 1;
     grid-column-start: 2; /* Ensures canvas is in the second column */
     grid-row: 2;
     align-self: center; /* Vertically centers the canvas */
