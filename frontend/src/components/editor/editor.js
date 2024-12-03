@@ -105,7 +105,7 @@ function Editor() {
       Download(canvas);
     }
   };
-
+  
   const handleColorChange = (color) => {
     let activeObject = canvas.getActiveObject();
     if (tool === "pencil") {
