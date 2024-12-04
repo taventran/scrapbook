@@ -26,6 +26,7 @@
     color: #d3d3d3; /* Change this to your preferred highlight color */
     color: #d3d3d3;
 }
+
 /* Hovering over tools display text */
 .icontiptext {
   visibility: hidden;
@@ -36,6 +37,7 @@
   position: absolute;
   z-index: 1;
 }
+
 .icon:hover .icontiptext{
   visibility: visible;
   transition-delay: 0.3s;
