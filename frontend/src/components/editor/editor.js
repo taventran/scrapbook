@@ -14,7 +14,7 @@ import {
 import Toolbar from "./tools/toolbar";
 import ColorPicker from "./tools/colorPicker";
 import { Canvas, PencilBrush } from "fabric";
-
+import Form from "./form";
 function Editor() {
   // Need canvasRef to make changes to Fabric canvas
   const canvasRef = useRef(null);
@@ -24,13 +24,15 @@ function Editor() {
   const [tool, setTool] = useState(null);
   const [draw, setDraw] = useState(false);
   const [showPicker, setShowPicker] = useState(false);
-
+  const [canvasSize, setCanvasSize] = useState(null);
+  const [showCanvas, setShowCanvas] = useState(false);
   // Initialize Fabric.js canvas
   useEffect(() => {
+    if (setShowCanvas) {
     if (canvasRef.current) {
       const initCanvas = new Canvas(canvasRef.current, {
-        width: canvasRef.current.parentElement.offsetWidth,
-        height: canvasRef.current.parentElement.offsetHeight,
+        width: canvasSize[0],
+        height: canvasSize[1],
       });
       initCanvas.backgroundColor = "#fff";
       initCanvas.renderAll();
@@ -41,7 +43,8 @@ function Editor() {
         }
       };
     }
-  }, []);
+    } 
+  }, [canvasSize]);
 
   // Handle drawing mode based on the "draw" state
   useEffect(() => {
@@ -143,18 +146,23 @@ function Editor() {
     }
   }, [canvas, file]);
 
+  function handleSubmit(event) {
+    const data = new FormData(event.target)
+    setCanvasSize([data.get("width"), data.get("height")])
+    setShowCanvas(true)
+  }
+
   return (
     <div className="editor">
       <Navbar />
       <div className="book">
+        <div className="canvasContainer">
         {showPicker && (
-          <div>
+          <div className="colorPicker">
             <ColorPicker handleColorChange={handleColorChange} />
             <button onClick={() => setShowPicker(false)}>Done</button>
           </div>
         )}
-
-        <div className="canvasContainer">
           <Toolbar
             handleShapeClick={handleShapeClick}
             handleFileChange={handleFileChange}
@@ -162,12 +170,15 @@ function Editor() {
             deleteObject={deleteObject}
             currentTool={tool}
           />
+        {!showCanvas && 
+          <Form handleSubmit={handleSubmit} />
+        }
+        {showCanvas && (
           <div className="size">
             <canvas ref={canvasRef} id="canvas"></canvas>
           </div>
-
+        )}
         </div>
-
       </div>
     </div>
   );
