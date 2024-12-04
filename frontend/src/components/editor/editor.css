@@ -8,10 +8,7 @@
 
 .book {
     display: flex;
-}
 
-.colorPicker {
-  
 }
 
 .icon {
@@ -48,17 +45,14 @@
 
 .canvasContainer {
     display: flex;
-    grid-template-columns: 4rem 1fr;
-    grid-template-rows: repeat(4, 200px);
     width: 100vw;
-    background-color: grey;
+    height: 100vh;
+    background-color: var(--color-fourth);
     justify-content: center;
 }
 
 .toolbar {
-    grid-column: 1;
     border-left: 5px solid var(--color-fifth);
-    grid-row: span 3;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,14 +62,12 @@
     border-right: 5px solid var(--color-fifth);
     border-bottom: 5px solid var(--color-fifth);
     border-top: 5px solid var(--color-fifth);
-    height: 70%;
+    height: 50%;
 }
 
 .size {
-    height: 500px;
-    width: 500px;
-    grid-column-start: 2; /* Ensures canvas is in the second column */
-    grid-row: 2;
+    height: 75vh;
+    width: 90vw;
     align-self: center; /* Vertically centers the canvas */
     justify-self: center; /* Horizontally centers the canvas */
     overflow: scroll;
