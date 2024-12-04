@@ -1,0 +1,12 @@
+.container {
+  border: solid 3px black;
+  background-color: var(--color-tertiary); 
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+

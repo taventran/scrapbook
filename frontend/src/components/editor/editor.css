@@ -10,6 +10,10 @@
     display: flex;
 }
 
+.colorPicker {
+  
+}
+
 .icon {
     margin-top: 10px;
     width: 2rem;
@@ -28,8 +32,7 @@
 }
 
 /* Hovering over tools display text */
-.icontiptext {
-  visibility: hidden;
+.icontiptext { visibility: hidden;
   padding: 0.25em 0.5em;
   background-color: black;
   color: #fff;
@@ -81,7 +84,5 @@
 #canvas {
     border: 2px solid black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    height: 500px;
-    width: 500px;
 }
 
