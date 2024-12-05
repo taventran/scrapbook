@@ -1,6 +1,10 @@
 .container {
   border: solid 3px black;
   background-color: var(--color-tertiary); 
+  height: 10rem;
+  width: 7.5rem;
+  align-self: center;
+  
 }
 
 form {

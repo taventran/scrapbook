@@ -26,13 +26,14 @@ function Editor() {
   const [showPicker, setShowPicker] = useState(false);
   const [canvasSize, setCanvasSize] = useState(null);
   const [showCanvas, setShowCanvas] = useState(false);
+
   // Initialize Fabric.js canvas
   useEffect(() => {
-    if (setShowCanvas) {
+    if (showCanvas) {
     if (canvasRef.current) {
       const initCanvas = new Canvas(canvasRef.current, {
         width: canvasSize[0],
-        height: canvasSize[1],
+        height: canvasSize[1], 
       });
       initCanvas.backgroundColor = "#fff";
       initCanvas.renderAll();
@@ -44,7 +45,7 @@ function Editor() {
       };
     }
     } 
-  }, [canvasSize]);
+  }, [canvasSize, showCanvas]);
 
   // Handle drawing mode based on the "draw" state
   useEffect(() => {
@@ -61,7 +62,7 @@ function Editor() {
       }
       canvas.renderAll();
     }
-  }, [canvas, draw]);
+  }, [canvas, draw, canvasSize]);
 
   const handlePaintClick = () => {
     setShowPicker(!showPicker);
@@ -163,6 +164,7 @@ function Editor() {
             <button onClick={() => setShowPicker(false)}>Done</button>
           </div>
         )}
+        {showCanvas &&
           <Toolbar
             handleShapeClick={handleShapeClick}
             handleFileChange={handleFileChange}
@@ -170,14 +172,15 @@ function Editor() {
             deleteObject={deleteObject}
             currentTool={tool}
           />
+        }
         {!showCanvas && 
           <Form handleSubmit={handleSubmit} />
         }
-        {showCanvas && (
+        {showCanvas && 
           <div className="size">
             <canvas ref={canvasRef} id="canvas"></canvas>
           </div>
-        )}
+        }
         </div>
       </div>
     </div>
