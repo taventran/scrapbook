@@ -158,13 +158,9 @@ function Editor() {
     <div className="editor">
       <Navbar />
       <div className="book">
-        <div className="canvasContainer">
-        {showPicker && (
-          <div className="colorPicker">
-            <ColorPicker handleColorChange={handleColorChange} />
-            <button onClick={() => setShowPicker(false)}>Done</button>
-          </div>
-        )}
+        {!showCanvas && 
+          <Form handleSubmit={handleSubmit} />
+        }
         {showCanvas &&
           <Toolbar
             handleShapeClick={handleShapeClick}
@@ -174,9 +170,13 @@ function Editor() {
             currentTool={tool}
           />
         }
-        {!showCanvas && 
-          <Form handleSubmit={handleSubmit} />
-        }
+        <div className="canvasContainer">
+        {showPicker && (
+          <div className="colorPicker">
+            <ColorPicker handleColorChange={handleColorChange} />
+            <button onClick={() => setShowPicker(false)}>Done</button>
+          </div>
+        )}
         {showCanvas && 
           <div className="size">
             <canvas ref={canvasRef} id="canvas"></canvas>

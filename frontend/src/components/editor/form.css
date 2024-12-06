@@ -1,15 +1,19 @@
 .container {
   border: solid 3px black;
-  background-color: var(--color-tertiary); 
-  height: 10rem;
-  width: 7.5rem;
+  font: 1rem lato;
+  background-color: whitesmoke; 
+  height: 15rem;
+  width: 10rem;
   align-self: center;
-  
+  border-radius: 10px;
 }
 
 form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding-top: 0.5rem;
+  gap: 1.25rem;
 }
 
 
