@@ -15,6 +15,7 @@ import Toolbar from "./tools/toolbar";
 import ColorPicker from "./tools/colorPicker";
 import { Canvas, PencilBrush } from "fabric";
 import Form from "./form";
+
 function Editor() {
   // Need canvasRef to make changes to Fabric canvas
   const canvasRef = useRef(null);
