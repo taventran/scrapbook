@@ -1,17 +1,5 @@
-.editor {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.book {
-    display: flex;
-}
-
 .icon {
-    margin-top: 10px;
+    margin-top: 0.25rem;
     width: 2rem;
     height: 2rem;
 }
@@ -42,42 +30,55 @@
   transition-delay: 0.3s;
 }
 
+.editor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.book {
+  display: flex;
+  background-color: var(--color-fourth);
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+}
+
 .canvasContainer {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--color-fourth);
-    justify-content: center;
+  display: flex;
+  align-self:center;
+  justify-content: center;
 }
 
 .toolbar {
-    border-left: 5px solid var(--color-fifth);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-self: center;
-    justify-content: center;
-    background-color: var(--color-tertiary);
-    border-right: 5px solid var(--color-fifth);
-    border-bottom: 5px solid var(--color-fifth);
-    border-top: 5px solid var(--color-fifth);
-    height: 50%;
+  display: flex;
+  border: solid 1px black;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  background-color: var(--color-tertiary);
+  height: 50%;
 }
 
 .size {
-    height: 75vh;
-    width: 90vw;
-    align-self: center;  
-    justify-self: center;  
-    overflow: scroll;
+  display: flex;
+  background-color: black;
+  justify-content: center;
+  height: 75vh;
+  width: 90vw;
+  overflow: scroll;
 }
 
 #canvas {
-    border: 2px solid black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    display: block; /* Remove default margins */
-    padding: 0;
-    margin: 0; 
-
+  border: 2px solid red;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  display: block; 
+  padding: 0;
+  margin: 0; 
+  align-self: center;
+  justify-self: center;
 }
 

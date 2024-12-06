@@ -5,6 +5,7 @@ function Form({handleSubmit}) {
   
   return (
     <div className="container">
+      <p>Desired size of canvas</p>
       <form onSubmit={handleSubmit}>
         <div>
           <label for="width">Width: </label>
