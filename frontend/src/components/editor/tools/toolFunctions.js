@@ -8,10 +8,11 @@ import {
   Line,
 } from "fabric";
 
-export const DrawRectangle = (canvas) => {
+
+export const DrawRectangle = (canvas, mouseX, mouseY) => {
   const rect = new Rect({
-    left: 30,
-    top: 30,
+    left: mouseX,
+    top: mouseY,
     fill: "blue",
     width: 100,
     height: 100,
@@ -19,24 +20,24 @@ export const DrawRectangle = (canvas) => {
   canvas.add(rect);
 };
 
-export const DrawCircle = (canvas) => {
+export const DrawCircle = (canvas, mouseX, mouseY) => {
   const circle = new Circle({
     radius: 50,
     fill: "red",
-    top: 30,
-    left: 30,
+    top: mouseY,
+    left: mouseX,
   });
   canvas.add(circle);
 };
 
-export const DrawTriangle = (canvas) => {
+export const DrawTriangle = (canvas, mouseX, mouseY) => {
   const triangle = new Triangle(
     {
       radius: 50,
       height: 100,
       width: 100,
-      top: 30,
-      left: 30,
+      top: mouseY,
+      left: mouseX,
     },
     false,
   );
@@ -58,11 +59,11 @@ const points = [
   { x: 160.5, y: 80.5 },
 ];
 
-export const DrawStar = (canvas) => {
+export const DrawStar = (canvas, mouseX, mouseY) => {
   const star = new Polygon(points, {
     radius: 50,
-    top: 30,
-    left: 30,
+    top: mouseY,
+    left: mouseX,
   });
   canvas.add(star);
 };
@@ -95,10 +96,10 @@ export const DrawLine = (canvas) => {
   canvas.add(line);
 };
 
-export const DrawTextbox = (canvas) => {
+export const DrawTextbox = (canvas, mouseX, mouseY) => {
   const textbox = new Textbox("Type here...", {
-    left: 50,
-    top: 50,
+    left: mouseX,
+    top: mouseY,
     width: 200,
     fontSize: 20,
     fill: "black",
@@ -116,3 +117,4 @@ export const Download = (canvas) => {
   link.click();
   console.log(url);
 };
+
