@@ -26,7 +26,6 @@ function Editor() {
   const [showPicker, setShowPicker] = useState(false);
   const [canvasSize, setCanvasSize] = useState(null);
   const [showCanvas, setShowCanvas] = useState(false);
-  const [pos, setPos] = useState(null);
   // Initialize Fabric.js canvas
   useEffect(() => {
     if (showCanvas) {
@@ -48,34 +47,35 @@ function Editor() {
   }, [canvasSize, showCanvas]);
 
   useEffect(() => {
-    if (showCanvas && canvas !== null) {
+    console.log(tool);
+    if (tool !== null && showCanvas && canvas !== null) {
+      canvas.off("mouse:down"); // Remove old listener
       canvas.on("mouse:down", (event) => {
-        const pointer = canvas.getPointer(event.e);
-        const mouseX = pointer.x;
-        const mouseY = pointer.y;
-        setPos([mouseX, mouseY]);
-        if (canvas.getActiveObject() !== undefined) {
-          console.log(canvas.getActiveObject());
-          return
-        }
-        if (tool === "square") {
-          DrawRectangle(canvas, mouseX, mouseY);
-        } else if (tool === "circle") {
-          DrawCircle(canvas, mouseX, mouseY);
-        } else if (tool === "textBox") {
-          DrawTextbox(canvas, mouseX, mouseY);
-        } else if (tool === "triangle") {
-          DrawTriangle(canvas, mouseX, mouseY);
-        } else if (tool === "star") {
-          DrawStar(canvas, mouseX, mouseY);
-        } else if (tool === "line") {
-          DrawLine(canvas, mouseX, mouseY);
-        } else if (tool === "download") {
-          Download(canvas, mouseX, mouseY);
-        }
-      });
-    }
-  }, [showCanvas, canvas, tool]);
+      const pointer = canvas.getPointer(event.e);
+      const mouseX = pointer.x;
+      const mouseY = pointer.y;
+      if (canvas.getActiveObject() !== undefined) {
+        console.log(canvas.getActiveObject());
+        return
+      }
+      if (tool === "square") {
+        DrawRectangle(canvas, mouseX, mouseY);
+      } else if (tool === "circle") {
+        DrawCircle(canvas, mouseX, mouseY);
+      } else if (tool === "textBox") {
+        DrawTextbox(canvas, mouseX, mouseY);
+      } else if (tool === "triangle") {
+        DrawTriangle(canvas, mouseX, mouseY);
+      } else if (tool === "star") {
+        DrawStar(canvas, mouseX, mouseY);
+      } else if (tool === "line") {
+        DrawLine(canvas, mouseX, mouseY);
+      } else if (tool === "download") {
+        Download(canvas, mouseX, mouseY);
+      }
+    });
+  }
+  }, [tool, canvas, showCanvas]);
 
   // Handle drawing mode based on the "draw" state
   useEffect(() => {
@@ -104,13 +104,11 @@ function Editor() {
 
 
   const handleShapeClick = (changeTool) => {
-    // setSelectedShape(tool);
     console.log(changeTool);
     if (changeTool !== tool) {
       // Necessary logic to start and stop draw
       if (changeTool === "pencil") {
         handlePencilClick();
-        console.log(changeTool);
       } else if (tool === "pencil") {
         handlePencilClick();
       }
@@ -122,7 +120,6 @@ function Editor() {
       }
       setTool(null);
     }
-
   };
   
   const handleColorChange = (color) => {
