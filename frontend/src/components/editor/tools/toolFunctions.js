@@ -14,15 +14,15 @@ export const DrawRectangle = (canvas, mouseX, mouseY) => {
     left: mouseX,
     top: mouseY,
     fill: "blue",
-    width: 100,
-    height: 100,
+    width: canvas.width/10,
+    height: canvas.width/10,
   });
   canvas.add(rect);
 };
 
 export const DrawCircle = (canvas, mouseX, mouseY) => {
   const circle = new Circle({
-    radius: 50,
+    radius: canvas.width/18,
     fill: "red",
     top: mouseY,
     left: mouseX,
@@ -33,9 +33,9 @@ export const DrawCircle = (canvas, mouseX, mouseY) => {
 export const DrawTriangle = (canvas, mouseX, mouseY) => {
   const triangle = new Triangle(
     {
-      radius: 50,
-      height: 100,
-      width: 100,
+      radius: canvas.width/9,
+      height: canvas.width/10,
+      width: canvas.width/10,
       top: mouseY,
       left: mouseX,
     },
@@ -61,7 +61,7 @@ const points = [
 
 export const DrawStar = (canvas, mouseX, mouseY) => {
   const star = new Polygon(points, {
-    radius: 50,
+    radius: canvas.width/18,
     top: mouseY,
     left: mouseX,
   });
@@ -100,7 +100,7 @@ export const DrawTextbox = (canvas, mouseX, mouseY) => {
   const textbox = new Textbox("Type here...", {
     left: mouseX,
     top: mouseY,
-    width: 200,
+    width: canvas.width/8,
     fontSize: 20,
     fill: "black",
     backgroundColor: "lightyellow",

@@ -2,10 +2,20 @@
   border: solid 3px black;
   font: 1rem lato;
   background-color: whitesmoke; 
-  height: 15rem;
-  width: 10rem;
+  height: 20rem;
+  width: 20rem;
   align-self: center;
+  justify-self: center;
   border-radius: 10px;
+}
+
+p { 
+ padding-bottom: 0.5rem; 
+}
+
+.helper-text {
+  padding-top: 1rem;
+ font-size: 1rem;
 }
 
 form {
@@ -13,8 +23,17 @@ form {
   flex-direction: column;
   align-items: center;
   padding-top: 0.5rem;
-  gap: 1.25rem;
+  gap: 2.25rem;
 }
 
+button {
+  background-color: blanchedalmond;
+  font: 1rem lato;
+  border: solid 0.10rem black; 
+  border-radius: 10px;
+}
 
-
+button:hover {
+  background-color: blueviolet;
+  cursor: pointer;
+}
