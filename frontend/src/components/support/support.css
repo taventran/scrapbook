@@ -1,6 +1,32 @@
+.support-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
 
 .support {
-    margin-top: 10px;
     text-align: center;
     font-family: "Lato";
+}
+
+.squidward {
+  border: solid 0.25rem black;
+  border-radius: 0.15rem;
+}
+
+.coffee {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.coffee:hover {
+  color: var(--color-tertiary);
+  cursor: pointer;
+}
+
+#coffe-icon {
+  font-size: 5rem;
 }
