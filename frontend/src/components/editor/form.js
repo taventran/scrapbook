@@ -1,15 +1,11 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect} from "react"
 import "./form.css"
 
 function Form({handleSubmit}) {
-  const [size, setSize] = useState(null);
   useEffect( () => {
     const canvasHolder = 
       document.getElementsByClassName("size");
     console.log(canvasHolder);
-    // setSize(canvasHolder[0].innerWidth,
-    //   canvasHolder[0].innerHeight);
-    // console.log(size);
   });
 
   return (
@@ -36,7 +32,6 @@ function Form({handleSubmit}) {
       </p>
     </div>
   )
-
 }
 
 export default Form;
