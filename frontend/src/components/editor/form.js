@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import "./form.css"
 
 function Form({handleSubmit}) {
@@ -7,7 +7,7 @@ function Form({handleSubmit}) {
       document.getElementsByClassName("size");
     console.log(canvasHolder);
   });
-
+ 
   return (
     <div className="container">
       <p>Desired size of canvas</p>
