@@ -15,7 +15,7 @@ function Support() {
               />
                 <p>Please donate if you enjoyed this website</p>
                 <a href="https://buymeacoffee.com/taventran">
-                  <div className="coffee"> 
+                <div className="coffee"> 
                     <p> Buy me a coffee </p>
                     <SiBuymeacoffee style={{fontSize: "2em"}} 
                     id="coffee-icon" />

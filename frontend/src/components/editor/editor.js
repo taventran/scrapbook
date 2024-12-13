@@ -26,6 +26,7 @@ function Editor() {
   const [showPicker, setShowPicker] = useState(false);
   const [canvasSize, setCanvasSize] = useState(null);
   const [showCanvas, setShowCanvas] = useState(false);
+  const [objPos, setObjPos] = useState(null);
   // Initialize Fabric.js canvas
   useEffect(() => {
     if (showCanvas) {
@@ -56,10 +57,18 @@ function Editor() {
         const pointer = canvas.getPointer(event.e);
         const mouseX = pointer.x;
         const mouseY = pointer.y;
+        // Selected an existing object
         if (canvas.getActiveObject() !== undefined) {
-          console.log(canvas.getActiveObject());
+          const obj = canvas.getActiveObject();
+          console.log(obj)
+          setObjPos({
+            top: obj.top + 100,
+            left: obj.left
+          });
+          handlePaintClick();
           return
         }
+        // Creating new object
         if (tool === "square") {
           DrawRectangle(canvas, mouseX, mouseY);
         } else if (tool === "circle") {
@@ -87,7 +96,7 @@ function Editor() {
         canvas.isDrawingMode = true;
         canvas.freeDrawingBrush = new PencilBrush(canvas);
         canvas.freeDrawingBrush.color = "#000";
-        canvas.freeDrawingBrush.width = 5; // Set brush size
+        canvas.freeDrawingBrush.width = 2; // Set brush size
       } else {
         canvas.isDrawingMode = false;
         console.log("Drawing Off!")
@@ -185,7 +194,7 @@ function Editor() {
         }
         <div className="canvasContainer">
         {showPicker && (
-          <div className="colorPicker">
+          <div className="colorPicker" style={objPos}>
             <ColorPicker handleColorChange={handleColorChange} />
             <button onClick={() => setShowPicker(false)}>Done</button>
           </div>

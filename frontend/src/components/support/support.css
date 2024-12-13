@@ -12,6 +12,7 @@
 .squidward {
   border: solid 0.25rem black;
   border-radius: 0.15rem;
+  width: 20rem;
 }
 
 .coffee {
