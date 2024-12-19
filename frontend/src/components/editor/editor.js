@@ -195,8 +195,12 @@ function Editor() {
         <div className="canvasContainer">
         {showPicker && (
           <div className="colorPicker" style={objPos}>
-            <ColorPicker handleColorChange={handleColorChange} />
-            <button onClick={() => setShowPicker(false)}>Done</button>
+            <ColorPicker 
+                handleColorChange={handleColorChange} 
+            />
+            <button onClick={
+                () => setShowPicker(false)}>Done
+            </button>
           </div>
         )}
         {showCanvas && 
