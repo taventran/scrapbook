@@ -1,26 +1,76 @@
 .homescreen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: "Lato";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "HelloCurlyQ";
+  color: black; 
 }
 
-.homescreen img {
-    max-width: 100%;
-    height: auto;
+#header {
+  font-size: 5em;
 }
 
-.mobile img {
-    max-width: 80%; /* Make the image smaller for mobile */
+
+#s:hover {
+  color: #8D86C9;
 }
 
-.desktop img {
-    max-width: 50%; /* Larger image for desktop */
+#t:hover {
+  color: #6D64B9;
 }
 
-p {
-    margin: 10px 0;
-    font-size: 1.2rem;
+#o:hover {
+    color: #554CA9
+}
+
+#r:hover {
+    color:#473F8D
+}
+
+#y:hover {
+  color:#393371 
+}
+
+.subheader-container {
+  background-color: #8A9A5B;
+  height: 10em;
+  display:flex;
+  justify-content: center;
+  margin-bottom: 2em;
+  align-items: center;
+}
+
+#subheader {
+  font-size: 2.5em;
+  background-color: white;
+  border-radius: 1em;
+  padding: 1em;
+  text-align: center;
+}
+
+span:hover {
+  cursor: pointer;
+
+}
+iframe {
+  padding-bottom: 1rem;
+}
+
+#banner {
+  width: 100vw;
+  height: 5em;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+
+.tutorial {
+  font-size: 1.5em;
+  background: white;
+  border-radius: 1rem;
+  border: solid 1px black;
+  background: linear-gradient(90deg,#DEAA79 calc(100% - 5px), #FFE6A9 0);
+  background-size: calc((100% - 2*10px)/20 + 2px) 100%;
 }

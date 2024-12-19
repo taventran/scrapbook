@@ -1,10 +1,17 @@
-:root {
-    --color-main: #8D86C9;
-    --color-secondary: #242038;
-    --color-tertiary: #B59F78;
-    --color-fourth: #725AC1;
-    --color-fifth:  #CAC4CE;
 
+:root {
+    --color-main: #F7ECE1;
+    --color-secondary: #CAC4CE;
+    /* --color-tertiary: #8D86C9; */
+    --color-tertiary: #B1C29E;
+    --color-fourth: #725AC1;
+    --color-fifth:  #242038;
+
+}
+
+@font-face {
+	font-family: 'HelloCurlyQ';
+	src: url('//2ttf.com/webfont/Fm4rTbzmOew/webfont.ttf') format('truetype');
 }
 
 body {
