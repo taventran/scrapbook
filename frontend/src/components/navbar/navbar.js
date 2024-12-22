@@ -16,9 +16,6 @@ function Navbar() {
       <Link className="item" to="/about">
         About
       </Link>
-      <Link className="item" to="/support">
-        Support Us
-      </Link>
     </nav>
   );
 }

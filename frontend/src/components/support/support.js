@@ -7,6 +7,16 @@ function Support() {
     return ( 
         <div className="support-container">
             <Navbar/>
+            <div className="about">
+              <h1>
+                About
+              </h1>
+              <p>
+                A simple scrapbooking website made
+                to be accessible and intuitive to 
+                use.
+              </p>
+            </div>
             <div className="support">
                 <img className="squidward" 
                   src={

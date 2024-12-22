@@ -4,6 +4,10 @@
   gap: 3rem;
 }
 
+.about {
+  text-align: center;
+}
+
 .support {
     text-align: center;
     font-family: "Lato";
