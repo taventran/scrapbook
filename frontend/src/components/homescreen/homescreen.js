@@ -31,7 +31,7 @@ function HomeScreen() {
         />
         <div className="subheader-container">
           <h2 id="subheader">
-            Scrapsite makes memories permanent
+            Scrapsite make memories permanent
           </h2>
         </div>
         
