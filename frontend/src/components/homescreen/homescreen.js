@@ -8,7 +8,7 @@ function HomeScreen() {
     <div className={`homescreen ${isMobile ? "mobile" : "desktop"}`}>
       <Navbar />
       <div className="page">
-        <h1 id="header">Scrapbook your 
+        <h1 id="header">Scrapbook&nbsp;your&nbsp;
           <span id="s">
             s
           </span>
