@@ -183,6 +183,12 @@ function Editor() {
         {!showCanvas && 
           <Form handleSubmit={handleSubmit} />
         }
+        <div className="canvasContainer">
+        {showCanvas &&
+        <div className="colors">
+          <ColorPicker handleColorChange={handleColorChange}/>
+        </div>
+        }
         {showCanvas &&
           <Toolbar
             handleShapeClick={handleShapeClick}
@@ -192,17 +198,6 @@ function Editor() {
             currentTool={tool}
           />
         }
-        <div className="canvasContainer">
-        {showPicker && (
-          <div className="colorPicker" style={objPos}>
-            <ColorPicker 
-                handleColorChange={handleColorChange} 
-            />
-            <button onClick={
-                () => setShowPicker(false)}>Done
-            </button>
-          </div>
-        )}
         {showCanvas && 
           <div className="size">
             <canvas ref={canvasRef} id="canvas"></canvas>

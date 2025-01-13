@@ -40,9 +40,16 @@
 
 .book {
   display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   justify-content: center;
+  align-items: center;
+}
+
+.colors {
+  margin-top: 3em;
+  border: 1px solid black;
 }
 
 .canvasContainer {

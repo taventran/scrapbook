@@ -81,14 +81,14 @@ function Toolbar({
         <FiTriangle />
         <span className="icontiptext">Triangle</span>
       </div>
-      <div
-        id="line"
-        className={`icon ${currentTool === "line" ? "selected" : ""}`}
-        onClick={() => handleShapeClick("line")}
-      >
-        <TfiLayoutLineSolid />
-        <span className="icontiptext">Line</span>
-      </div>
+      {/* <div */}
+      {/*   id="line" */}
+      {/*   className={`icon ${currentTool === "line" ? "selected" : ""}`} */}
+      {/*   onClick={() => handleShapeClick("line")} */}
+      {/* > */}
+      {/*   <TfiLayoutLineSolid /> */}
+      {/*   <span className="icontiptext">Line</span> */}
+      {/* </div> */}
       <div id="upload" className="icon">
         <input
           ref={hiddenUploadInput}

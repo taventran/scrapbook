@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { TwitterPicker } from "react-color";
+import { CompactPicker } from "react-color";
 
 export default function ColorPicker({ handleColorChange, showPicker }) {
   const [color, setColor] = useState("#ff000");
@@ -10,5 +10,5 @@ export default function ColorPicker({ handleColorChange, showPicker }) {
     handleColorChange(color);
   };
 
-  return <TwitterPicker color={color} onChangeComplete={changeColor} />;
+  return <CompactPicker color={color} onChangeComplete={changeColor} />;
 }
