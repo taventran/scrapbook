@@ -1,87 +1,91 @@
+/* Navbar container styles */
 .nav {
   margin-top: 0.25rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: row;
-  width: 100%;
-  height: 4rem;
-  justify-content: flex-start;
+  gap: 1em;
   align-items: center;
   background-color: var(--color-tertiary);
   border-bottom: 5px solid var(--color-fifth);
   padding: 0 1rem;
   box-sizing: border-box;
+  position: relative;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .nav {
-        flex-direction: column;
-        height: auto;
-        padding: 1rem;
-    }
-}
-
+/* Logo styles */
 .logo {
-    font-family: "HelloCurlyQ"; 
-    font-size: 2.5rem;
-    display: flex;
-    align-items: center;
-    margin-left: 1rem;
-    flex-grow: 1;
-    text-align: center;
-    color: var(--color-fifth);
-    text-decoration: inherit;
+  font-family: "HelloCurlyQ";
+  font-size: 2.5rem;
+  flex-grow: 1;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-fifth);
 }
 
+/* Menu toggle (burger icon) styles */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--color-fifth);
+}
+
+/* Menu items container */
+.menu-items {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+/* Menu item styles */
 .item {
-    font-family: "Lato";
-    font-size: 1rem;
-    display: flex;
-    width: 6rem;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    color: var(--color-fifth);
-    text-decoration: none;
-    position: relative;
-    margin: 0 0.5rem;
-    transition: color 0.3s ease;
+  font-family: "Lato";
+  font-size: 1rem;
+  text-align: center;
+  color: var(--color-fifth);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-/* Stacking items vertically on smaller screens */
-@media (max-width: 768px) {
-    .item {
-        width: 100%;
-        margin: 0.5rem 0;
-        font-size: 1.2rem;
-    }
-}
-
-.item:last-child {
-    margin-right: 1rem;
-}
-
-.item::before {
-    content: attr(data-text);
-    position: absolute;
-    display: block;
-    width: 50%;
-    height: 3px;
-    bottom: 0.01rem;
-    left: 25%;
-    overflow: hidden;
-    background-color: var(--color-fourth);
-    transform: scaleX(0);
-    transform-origin: top left;
-    transition: transform 0.9s ease;
-}
-
-.item:hover::before {
-    transform: scaleX(1);
-}
-
-/* Adding hover effects for mobile devices */
 .item:hover {
-    color: var(--color-fourth);
+  color: var(--color-fourth);
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  /* Show burger menu on small screens */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Hide menu items by default */
+  .menu-items {
+    display: none;
+    flex-direction: column;
+    background-color: var(--color-tertiary);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    border-top: 5px solid var(--color-fifth);
+    z-index: 10;
+  }
+
+  /* Show menu when toggled */
+  .menu-items.show {
+    display: flex;
+  }
+
+
+  .item {
+    margin: 0.5rem 0;
+  }
+
+  .menu-items .item:hover {
+    background-color: pink;
+    color: var(--color-fourth);
+  } 
+}
+
