@@ -69,6 +69,21 @@
   height: 50%;
 }
 
+.tools {
+  width: 3em;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.colors {
+  z-index: 100;
+  align-self: left;
+  justify-self: right;
+}
+
 .size {
   display: flex;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);

@@ -65,7 +65,6 @@ function Editor() {
             top: obj.top + 100,
             left: obj.left
           });
-          handlePaintClick();
           return
         }
         // Creating new object
@@ -184,12 +183,17 @@ function Editor() {
           <Form handleSubmit={handleSubmit} />
         }
         <div className="canvasContainer">
+        {/* {showCanvas && */}
+        {/* <div className="colors"> */}
+        {/*   <ColorPicker handleColorChange={handleColorChange}/> */}
+        {/* </div> */}
+        {/* } */}
+
         {showCanvas &&
-        <div className="colors">
-          <ColorPicker handleColorChange={handleColorChange}/>
-        </div>
-        }
-        {showCanvas &&
+        <div className="tools">
+          {showPicker &&
+          <ColorPicker className="color" handleColorChange={handleColorChange}/>
+          } 
           <Toolbar
             handleShapeClick={handleShapeClick}
             handleFileChange={handleFileChange}
@@ -197,6 +201,7 @@ function Editor() {
             deleteObject={deleteObject}
             currentTool={tool}
           />
+        </div>
         }
         {showCanvas && 
           <div className="size">
