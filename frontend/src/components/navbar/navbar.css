@@ -71,6 +71,7 @@
     padding: 1rem 0;
     border-top: 5px solid var(--color-fifth);
     z-index: 10;
+    border-radius: 1em;
   }
 
   /* Show menu when toggled */
@@ -81,11 +82,13 @@
 
   .item {
     margin: 0.5rem 0;
+    border-bottom: 0.1rem solid black;
+    border-radius: 1em;
   }
 
-  .menu-items .item:hover {
-    background-color: pink;
+  .item:hover {
     color: var(--color-fourth);
-  } 
+  }
+
 }
 

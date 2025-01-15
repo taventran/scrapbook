@@ -1,4 +1,5 @@
 import "./editor.css";
+import { isMobile } from 'react-device-detect';
 import React, { useRef, useState, useEffect } from "react";
 import Navbar from "../navbar/navbar";
 import {
@@ -26,7 +27,6 @@ function Editor() {
   const [showPicker, setShowPicker] = useState(false);
   const [canvasSize, setCanvasSize] = useState(null);
   const [showCanvas, setShowCanvas] = useState(false);
-  const [objPos, setObjPos] = useState(null);
   // Initialize Fabric.js canvas
   useEffect(() => {
     if (showCanvas) {
@@ -46,46 +46,88 @@ function Editor() {
     }
     } 
   }, [canvasSize, showCanvas]);
+  // Handle color picker visibility when clicking outside
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (showPicker) {
+  //       setShowPicker(!showPicker); // Hide the color picker
+  //     }
+  //   };
+  //
+  //   document.addEventListener("click", handleClickOutside);
+  //
+  //   return () => {
+  //     document.removeEventListener("click", handleClickOutside);
+  //   };
+  // }, [showPicker]);
+    useEffect(() => {
+      console.log(tool);
+      if (canvas !== null) {
+        canvas.off("mouse:down"); // Remove old listener
+        canvas.off("mouse:move"); // Remove mouse move listener to prevent dragging objects
 
-  useEffect(() => {
-    console.log(tool);
-    if (canvas !== null) {
-      canvas.off("mouse:down"); // Remove old listener
-    }
-    if (tool !== null) {
-      canvas.on("mouse:down", (event) => {
-        const pointer = canvas.getPointer(event.e);
-        const mouseX = pointer.x;
-        const mouseY = pointer.y;
-        // Selected an existing object
-        if (canvas.getActiveObject() !== undefined) {
-          const obj = canvas.getActiveObject();
-          console.log(obj)
-          setObjPos({
-            top: obj.top + 100,
-            left: obj.left
+        let isDragging = false;
+        let initialPosition = null;
+
+        if (tool !== null) {
+          // Mouse down event
+          canvas.on("mouse:down", (event) => {
+            const pointer = canvas.getPointer(event.e);
+            const mouseX = pointer.x;
+            const mouseY = pointer.y;
+            initialPosition = { x: mouseX, y: mouseY }; // Store the initial position of the mouse
+            isDragging = false; // Reset dragging flag
+
+            // Selected an existing object
+            if (canvas.getActiveObject() !== undefined) {
+              const obj = canvas.getActiveObject();
+              console.log(obj);
+              return;
+            }
           });
-          return
+
+          // Mouse move event
+          canvas.on("mouse:move", (event) => {
+            if (initialPosition) {
+              const pointer = canvas.getPointer(event.e);
+              const mouseX = pointer.x;
+              const mouseY = pointer.y;
+
+              // If the mouse has moved more than a small threshold, it's a drag
+              if (Math.abs(mouseX - initialPosition.x) > 5 || Math.abs(mouseY - initialPosition.y) > 5) {
+                isDragging = true; // Set the dragging flag
+              }
+            }
+          });
+
+          // Mouse up event
+          canvas.on("mouse:up", (event) => {
+            if (!isDragging) {
+              const pointer = canvas.getPointer(event.e);
+              const mouseX = pointer.x;
+              const mouseY = pointer.y;
+
+              // Creating new object based on the selected tool
+              if (tool === "square") {
+                DrawRectangle(canvas, mouseX, mouseY);
+              } else if (tool === "circle") {
+                DrawCircle(canvas, mouseX, mouseY);
+              } else if (tool === "textBox") {
+                DrawTextbox(canvas, mouseX, mouseY);
+              } else if (tool === "triangle") {
+                DrawTriangle(canvas, mouseX, mouseY);
+              } else if (tool === "star") {
+                DrawStar(canvas, mouseX, mouseY);
+              } else if (tool === "line") {
+                DrawLine(canvas, mouseX, mouseY);
+              } else if (tool === "download") {
+                Download(canvas);
+              }
+            }
+          });
         }
-        // Creating new object
-        if (tool === "square") {
-          DrawRectangle(canvas, mouseX, mouseY);
-        } else if (tool === "circle") {
-          DrawCircle(canvas, mouseX, mouseY);
-        } else if (tool === "textBox") {
-          DrawTextbox(canvas, mouseX, mouseY);
-        } else if (tool === "triangle") {
-          DrawTriangle(canvas, mouseX, mouseY);
-        } else if (tool === "star") {
-          DrawStar(canvas, mouseX, mouseY);
-        } else if (tool === "line") {
-          DrawLine(canvas, mouseX, mouseY);
-        } else if (tool === "download") {
-          Download(canvas, mouseX, mouseY);
-        }
-    });
-  }
-  }, [tool, canvas, showCanvas]);
+      }
+    }, [tool, canvas, showCanvas]);
 
   // Handle drawing mode based on the "draw" state
   useEffect(() => {
@@ -133,26 +175,27 @@ function Editor() {
   };
   
   const handleColorChange = (color) => {
-    let activeObject = canvas.getActiveObject();
+    let activeObjects = canvas.getActiveObjects();
     if (tool === "pencil") {
       canvas.freeDrawingBrush.color = color.hex;
-    } else if (activeObject) {
-      activeObject.set("fill", color.hex);
-      console.log(activeObject);
-      // Need render all so it changes before user selects off object
-      canvas.renderAll();
-    } else {
-      canvas.backgroundImage = "";
-      canvas.backgroundColor = color.hex;
-      canvas.renderAll();
+    } else if (activeObjects.length) {
+      activeObjects.forEach((obj) => obj.set("fill", color.hex)); // Remove each selected object
+      canvas.renderAll(); // Re-render canvas to reflect changes
     }
   };
 
   const deleteObject = () => {
-    let activeObject = canvas.getActiveObject();
-    if (activeObject) {
-      canvas.remove(activeObject);
-    }
+      const activeObjects = canvas.getActiveObjects(); // Get all selected objects
+      if (activeObjects.length) {
+        activeObjects.forEach((obj) => canvas.remove(obj)); // Remove each selected object
+        canvas.discardActiveObject(); // Clear selection
+        canvas.renderAll(); // Re-render canvas to reflect changes
+      }
+  };
+
+  const downloadCanvas = () => {
+    Download(canvas);
+    console.log("download");
   };
 
   function handleFileChange(event) {
@@ -176,40 +219,47 @@ function Editor() {
   }
 
   return (
-    <div className="editor">
-      <Navbar />
-      <div className="book">
-        {!showCanvas && 
-          <Form handleSubmit={handleSubmit} />
-        }
-        <div className="canvasContainer">
-        {/* {showCanvas && */}
-        {/* <div className="colors"> */}
-        {/*   <ColorPicker handleColorChange={handleColorChange}/> */}
-        {/* </div> */}
-        {/* } */}
-
-        {showCanvas &&
-        <div className="tools">
-          {showPicker &&
-          <ColorPicker className="color" handleColorChange={handleColorChange}/>
-          } 
-          <Toolbar
-            handleShapeClick={handleShapeClick}
-            handleFileChange={handleFileChange}
-            handlePaintClick={handlePaintClick}
-            deleteObject={deleteObject}
-            currentTool={tool}
-          />
+    <div>
+      {isMobile ? (
+        <div className="mobile">
+          <Navbar />
+          <h1> This website was not designed for mobile </h1>
+          <p> If you wish to use the create tool you will have to be on a computer </p>
         </div>
-        }
-        {showCanvas && 
-          <div className="size">
-            <canvas ref={canvasRef} id="canvas"></canvas>
+        ) : (
+        <div className="editor">
+        <Navbar />
+        <div className="book">
+          {!showCanvas && 
+            <Form handleSubmit={handleSubmit} />
+          }
+          <div className="canvasContainer">
+          {showCanvas &&
+          <div className="tools">
+            {showPicker &&
+            <div className="colors">
+              <ColorPicker className="colorPicker" handleColorChange={handleColorChange}/>
+            </div>
+            } 
+            <Toolbar
+              handleShapeClick={handleShapeClick}
+              handleFileChange={handleFileChange}
+              handlePaintClick={handlePaintClick}
+              deleteObject={deleteObject}
+              currentTool={tool}
+              downloadCanvas={downloadCanvas}
+            />
           </div>
-        }
+          }
+          {showCanvas && 
+            <div className="size">
+              <canvas ref={canvasRef} id="canvas"></canvas>
+            </div>
+          }
+          </div>
         </div>
-      </div>
+    </div>
+    )}
     </div>
   );
 }

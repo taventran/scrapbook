@@ -41,6 +41,7 @@
   justify-content: center;
   margin-bottom: 2em;
   align-items: center;
+  border: 1px solid black;
   border-radius: 1rem;
 }
 
@@ -75,6 +76,7 @@ span:hover {
   overflow: hidden;
   margin-bottom: 2em;
   border-radius: 1rem;
+  border: solid 1px black;
 }
 
 

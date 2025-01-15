@@ -10,7 +10,7 @@ import { AiOutlineUpload } from "react-icons/ai";
 import { RiPaintFill } from "react-icons/ri";
 import { FiTriangle } from "react-icons/fi";
 import { CiText } from "react-icons/ci";
-import { TfiLayoutLineSolid } from "react-icons/tfi";
+// import { TfiLayoutLineSolid } from "react-icons/tfi";
 import { TiPencil } from "react-icons/ti";
 import { useRef } from "react";
 
@@ -20,6 +20,7 @@ function Toolbar({
   handlePaintClick,
   deleteObject,
   currentTool,
+  downloadCanvas,
 }) {
   const hiddenUploadInput = useRef(null);
   const hiddenBackgroundInput = useRef(null);
@@ -121,7 +122,7 @@ function Toolbar({
       <div
         id="download"
         className={`icon ${currentTool === "download" ? "selected" : ""}`}
-        onClick={() => handleShapeClick("download")}
+        onClick={downloadCanvas}
       >
         <MdOutlineSaveAlt />
         <span className="icontiptext">Download Canvas</span>

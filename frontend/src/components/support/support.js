@@ -23,7 +23,7 @@ function Support() {
               `${process.env.PUBLIC_URL}/photos/squidward.jpg`} 
               alt="Squidward panhandling"
               />
-                <p>Please donate if you enjoyed this website</p>
+                <p>Donate if you enjoyed this website. I'm broke!</p>
                 <a href="https://buymeacoffee.com/taventran">
                 <div className="coffee"> 
                     <p> Buy me a coffee </p>

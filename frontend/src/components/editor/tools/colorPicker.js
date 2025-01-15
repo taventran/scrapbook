@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { CompactPicker } from "react-color";
+import { SketchPicker } from "react-color";
 
 export default function ColorPicker({ handleColorChange, showPicker }) {
   const [color, setColor] = useState("#ff000");
@@ -10,5 +10,18 @@ export default function ColorPicker({ handleColorChange, showPicker }) {
     handleColorChange(color);
   };
 
-  return <CompactPicker color={color} onChangeComplete={changeColor} />;
+  return <SketchPicker color={color} onChangeComplete={changeColor} />;
 }
+
+// import React from 'react';
+// import { CustomPicker } from 'react-color';
+//
+// class ColorPicker extends React.Component {
+//   render() {
+//     const [color, setColor] = useState("#ff000");
+//     return <div>MyColorPicker</div>;
+//   }
+// }
+//
+// export default CustomPicker(ColorPicker);
+

@@ -38,6 +38,14 @@
   text-align: center;
 }
 
+.mobile {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  text-align: center;
+}
+
 .book {
   display: flex;
   flex-direction: column;
@@ -66,7 +74,7 @@
   align-items: center;
   align-self: center;
   justify-content: center;
-  height: 50%;
+  height: 75%;
 }
 
 .tools {
@@ -78,11 +86,13 @@
   /* align-items: center; */
 }
 
-.colors {
-  z-index: 100;
-  align-self: left;
-  justify-self: right;
-}
+/* .colors { */
+/*   z-index: 100; */
+/*   border: 1px black solid; */
+/*   background-color: black; */
+/*   align-self: left; */
+/*   justify-self: right; */
+/* } */
 
 .size {
   display: flex;
@@ -100,9 +110,27 @@
   margin: 0; 
 }
 
+/* .colorPicker { */
+/*   position: absolute; */
+/*   z-index: 5; */
+/*   top: 20rem; */
+/*   left: 5rem; */
+/* } */
 .colorPicker {
   position: absolute;
   z-index: 5;
-  top: 20rem;
-  left: 5rem;
+}
+
+.colors {
+  position: absolute; /* Ensure it's positioned absolutely */
+  left: 3em; /* Position it immediately to the right of the toolbar */
+  top: 0; /* Align it with the top of the toolbar */
+  transform: translateX(150%) translateY(70%); /* Push it right next to the toolbar */
+  z-index: 100; /* Ensure it appears on top of the canvas */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em;
+  width: 5em; /* Adjust the width of the color picker */
 }

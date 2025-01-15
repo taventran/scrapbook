@@ -8,21 +8,22 @@ import {
   Line,
 } from "fabric";
 
-
 export const DrawRectangle = (canvas, mouseX, mouseY) => {
+  const side = (canvas.width / 40) * Math.sqrt(Math.PI); // Match circle area
   const rect = new Rect({
     left: mouseX,
     top: mouseY,
     fill: "blue",
-    width: canvas.width/20,
-    height: canvas.width/20,
+    width: side,
+    height: side, // Make it a square to match the area
   });
   canvas.add(rect);
 };
 
 export const DrawCircle = (canvas, mouseX, mouseY) => {
+  const radius = canvas.width / 40; // Set circle size
   const circle = new Circle({
-    radius: canvas.width/40,
+    radius: radius,
     fill: "red",
     top: mouseY,
     left: mouseX,
@@ -31,17 +32,15 @@ export const DrawCircle = (canvas, mouseX, mouseY) => {
 };
 
 export const DrawTriangle = (canvas, mouseX, mouseY) => {
-  const triangle = new Triangle(
-    {
-      radius: canvas.width/9,
-      height: canvas.width/20,
-      width: canvas.width/20,
-      top: mouseY,
-      left: mouseX,
-      fill: "purple",
-    },
-    false,
-  );
+  const radius = canvas.width / 70;
+  const side = 2 * radius * Math.sqrt(3); // Side length of an equilateral triangle with the same area
+  const triangle = new Triangle({
+    width: side,
+    height: side, // Equilateral triangle dimensions
+    top: mouseY,
+    left: mouseX,
+    fill: "purple",
+  });
 
   canvas.add(triangle);
 };
@@ -74,13 +73,34 @@ export const addImage = (canvas, file, id) => {
     if (id === "background") {
       const canvasWidth = canvas.getWidth();
       const canvasHeight = canvas.getHeight();
+      const imgWidth = img.width;
+      const imgHeight = img.height;
       // Scale the image to fit within the canvas width and height
       // Scale the image to stretch to fit the canvas size
-      img.scaleToHeight(canvasHeight);
-      img.scaleToWidth(canvasWidth);
+      // img.scaleToHeight(canvasHeight);
+      // img.scaleToWidth(canvasWidth);
+      let imgRatio = imgWidth / imgHeight;
+      let canvasRatio = canvasWidth / canvasHeight;
+      if(imgRatio <= canvasRatio){
+        if(imgHeight> canvasHeight){
+          img.scaleToHeight(canvasHeight);
+          img.scaleToWidth(canvasWidth);
+        }
+      }else{
+        if(imgWidth> canvasWidth){
+          img.scaleToWidth(canvasWidth);
+          img.scaleToHeight(canvasHeight);
+        }
+      }
+      canvas.centerObject(img);
+      // Set image dimensions to match the canvas size
+      // img.set({
+      //   width: canvasWidth,
+      //   height: canvasHeight,
+      //   left: 0, // Align to the top-left corner
+      //   top: 0
+      // });
       canvas.backgroundImage = img;
-      canvas.backgroundColor = "#fff";
-      img.canvas = canvas;
     } else {
       canvas.add(img);
     }
@@ -104,17 +124,21 @@ export const DrawTextbox = (canvas, mouseX, mouseY) => {
     width: canvas.width/8,
     fontSize: 20,
     fill: "black",
-    backgroundColor: "lightyellow",
   });
   canvas.add(textbox);
   canvas.renderAll();
 };
 
 export const Download = (canvas) => {
-  let url = canvas.toDataURL("image/png");
+  let url = canvas.toDataURL({
+    format: 'png',
+    quality: 1,
+  });
   let link = document.createElement("a");
-  link.download = "filename.png";
+  link.download = "canvas.png";
   link.href = url;
+  console.log("Checking");
+  console.log(link);
   link.click();
   console.log(url);
 };
